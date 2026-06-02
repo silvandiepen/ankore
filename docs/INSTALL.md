@@ -8,7 +8,11 @@ Target package name:
 npm install @sil/ankore
 ```
 
-During local development, install by workspace/reference until the package is published.
+For pre-publish or private development installs:
+
+```bash
+npm install github:silvandiepen/ankore#development
+```
 
 ## Worker setup
 

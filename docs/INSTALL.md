@@ -14,6 +14,23 @@ For pre-publish or private development installs:
 npm install github:silvandiepen/ankore#development
 ```
 
+## Publishing
+
+Ankore publishes from GitHub Actions through `.github/workflows/publish.yml`.
+
+Required repository secret:
+
+- `NPM_TOKEN`: npm automation token with publish rights for `ankore`
+
+Important: if the npm account enforces 2FA for publish, use an npm **automation** token. A normal token that still prompts for OTP will work locally with `--otp`, but it will fail in CI because GitHub Actions cannot answer an authenticator prompt.
+
+Manual local publish, when needed:
+
+```bash
+npm run check
+npm publish --otp=<current-code>
+```
+
 ## Worker setup
 
 Create a product identity Worker with only config and a tiny entrypoint.

@@ -1,0 +1,24 @@
+{
+  "name": "ankore",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Lean identity continuity module for Sil products: anchor + encore.",
+  "license": "UNLICENSED",
+  "exports": {
+    ".": "./dist/index.js",
+    "./worker": "./dist/worker.js",
+    "./client": "./dist/client.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "check": "npm run typecheck && npm run test && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.0",
+    "typescript": "^5.8.3",
+    "vitest": "^4.1.8"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "product": "mikki",
+  "databaseBinding": "IDENTITY_DB",
+  "basePath": "/v1/identity",
+  "tablePrefix": "identity_",
+  "session": { "bearer": true, "cookie": true, "ttlDays": 30, "rotateOnRefresh": true, "cookieName": "mikki_session" },
+  "device": { "required": false, "autoCreateSubject": true },
+  "email": { "enabled": true, "storage": "plain", "purposes": ["verify_email", "recover", "link_account"] },
+  "accounts": { "enabled": true, "passwords": false, "required": false },
+  "apiKeys": { "enabled": true },
+  "entitlements": { "enabled": true },
+  "cors": { "allowedOrigins": ["https://*.mikki.tools", "https://mikki.tools"] }
+}

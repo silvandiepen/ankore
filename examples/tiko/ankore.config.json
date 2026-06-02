@@ -1,0 +1,13 @@
+{
+  "product": "tiko",
+  "databaseBinding": "IDENTITY_DB",
+  "basePath": "/v1/identity",
+  "tablePrefix": "identity_",
+  "session": { "bearer": true, "cookie": false, "ttlDays": 180, "rotateOnRefresh": true },
+  "device": { "required": true, "autoCreateSubject": true },
+  "email": { "enabled": true, "storage": "hash", "purposes": ["verify_email", "recover", "admin_login"] },
+  "accounts": { "enabled": true, "passwords": false, "required": false },
+  "apiKeys": { "enabled": false },
+  "entitlements": { "enabled": true },
+  "cors": { "allowedOrigins": ["https://*.tikoapps.org", "https://tiko.mt", "https://admin.tikoapps.org"] }
+}

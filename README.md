@@ -65,7 +65,10 @@ identity_
 - [Tiko integration](docs/TIKO.md)
 - [Mikki integration](docs/MIKKI.md)
 - [Roadmap](docs/ROADMAP.md)
+- [Full product TODO](docs/PRODUCT_TODO.md)
 
 ## Current state
 
-This repository starts as the specification and package scaffold. Implementation should proceed in small TDD slices, starting with config validation, token hashing, D1 storage, and device/session bootstrap.
+`ankore@0.1.0` is published with the initial identity core: config validation, token hashing, D1/memory storage, device/session bootstrap, email challenges, account summary, API-key scaffolding, entitlements scaffolding, and contract tests.
+
+It is not yet a complete product experience. The next work is productization: align public exports with docs, write full usage/API/security documentation, add a runnable Worker example, build the marketing/docs site, harden rate limiting and challenge attempts, and prepare Tiko/Mikki adoption plans. See [Full product TODO](docs/PRODUCT_TODO.md).

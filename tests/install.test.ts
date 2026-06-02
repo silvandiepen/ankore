@@ -14,15 +14,15 @@ describe('package install surface', () => {
       run('npm', ['init', '-y'], { cwd: temp, stdio: 'ignore', env })
       run('npm', ['install', join(root, packed)], { cwd: temp, stdio: 'ignore', env })
       writeFileSync(join(temp, 'check.mjs'), `
-        import { normalizeConfig } from '@sil/ankore'
-        import { createIdentityWorker } from '@sil/ankore/worker'
-        import { createAnkoreClient } from '@sil/ankore/client'
+        import { normalizeConfig } from 'ankore'
+        import { createIdentityWorker } from 'ankore/worker'
+        import { createAnkoreClient } from 'ankore/client'
         if (typeof normalizeConfig !== 'function') throw new Error('missing normalizeConfig')
         if (typeof createIdentityWorker !== 'function') throw new Error('missing worker')
         if (typeof createAnkoreClient !== 'function') throw new Error('missing client')
       `)
       run('node', ['check.mjs'], { cwd: temp, stdio: 'inherit', env })
-      expect(packed).toMatch(/^sil-ankore-/)
+      expect(packed).toMatch(/^ankore-/)
     } finally {
       rmSync(temp, { recursive: true, force: true })
     }

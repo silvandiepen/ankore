@@ -5,7 +5,7 @@
 Target package name:
 
 ```bash
-npm install @sil/ankore
+npm install ankore
 ```
 
 For pre-publish or private development installs:
@@ -20,7 +20,7 @@ Create a product identity Worker with only config and a tiny entrypoint.
 
 ```ts
 // workers/identity-api/src/index.ts
-import { createIdentityWorker } from '@sil/ankore/worker'
+import { createIdentityWorker } from 'ankore/worker'
 import config from '../ankore.config.json'
 
 export default createIdentityWorker(config)
@@ -61,7 +61,7 @@ npx wrangler d1 migrations apply <product-identity-db> --remote
 ## Client setup
 
 ```ts
-import { createAnkoreClient } from '@sil/ankore/client'
+import { createAnkoreClient } from 'ankore/client'
 
 export const identity = createAnkoreClient({
   baseUrl: 'https://id.example.com/v1/identity',
@@ -74,7 +74,7 @@ export const identity = createAnkoreClient({
 Product repos should import Ankore's test suite and run it against their config fixture.
 
 ```ts
-import { describeIdentityContract } from '@sil/ankore/testing'
+import { describeIdentityContract } from 'ankore/testing'
 import config from '../ankore.config.json'
 
 describeIdentityContract('product identity', { config })

@@ -21,7 +21,7 @@ Ankore is intentionally not a general-purpose auth platform. It is a small, audi
 Product repos should install and configure Ankore, not implement auth themselves:
 
 ```ts
-import { createIdentityWorker } from '@sil/ankore/worker'
+import { createIdentityWorker } from 'ankore/worker'
 import config from './ankore.config.json'
 
 export default createIdentityWorker(config)
@@ -30,7 +30,7 @@ export default createIdentityWorker(config)
 Client packages use the same route contract everywhere:
 
 ```ts
-import { createAnkoreClient } from '@sil/ankore/client'
+import { createAnkoreClient } from 'ankore/client'
 
 const identity = createAnkoreClient({ baseUrl: 'https://id.tiko.mt/v1/identity' })
 const session = await identity.bootstrapDevice()

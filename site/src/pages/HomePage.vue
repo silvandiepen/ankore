@@ -183,9 +183,10 @@ export default createIdentityWorker(config)</code></pre>
 
   &__section {
     position: relative;
-    width: min(1120px, calc(100% - 2rem));
+    box-sizing: border-box;
+    width: min(1120px, 100%);
     margin: 0 auto;
-    padding: calc(var(--space-xl) * 1.75) 0;
+    padding: var(--spacing);
   }
 
   &__eyebrow {
@@ -203,7 +204,6 @@ export default createIdentityWorker(config)</code></pre>
     align-items: center;
     gap: calc(var(--space-xl) * 1.35);
     min-height: min(760px, calc(100vh - 5rem));
-    padding-top: calc(var(--space-xl) * 2.2);
   }
 
   &__hero-copy {
@@ -339,7 +339,6 @@ export default createIdentityWorker(config)</code></pre>
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space);
-    padding-top: 0;
   }
 
   &__metric {
@@ -443,7 +442,7 @@ export default createIdentityWorker(config)</code></pre>
     display: grid;
     grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
     gap: var(--space-l);
-    padding: var(--space-l);
+    padding: var(--spacing);
     border-radius: 2rem;
   }
 
@@ -543,10 +542,6 @@ export default createIdentityWorker(config)</code></pre>
       grid-template-columns: 1fr;
     }
 
-    &__section {
-      padding: var(--space-xl) 0;
-    }
-
     &__card-grid,
     &__product-grid {
       grid-template-columns: 1fr;
@@ -559,10 +554,6 @@ export default createIdentityWorker(config)</code></pre>
 
   @media (max-width: 640px) {
     padding-top: calc(var(--space) * 3.5);
-
-    &__section {
-      width: min(100% - 1rem, 1120px);
-    }
 
     &__proof,
     &__principles {

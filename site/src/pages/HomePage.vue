@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Button } from '@sil/ui'
 import { useBemm } from 'bemm'
+import AnkoreLogo from '../components/AnkoreLogo.vue'
 
 const bemm = useBemm('ankore-home', { return: 'string' })
 
@@ -50,6 +51,9 @@ const productsUsingAnkore = [
         </div>
       </div>
       <div :class="bemm('hero-panel')" aria-label="Identity continuity lifecycle">
+        <div :class="bemm('hero-logo')">
+          <AnkoreLogo />
+        </div>
         <span>anonymous</span>
         <span>device</span>
         <span>session</span>
@@ -213,6 +217,11 @@ export default createIdentityWorker(config)</code></pre>
     background: color-mix(in srgb, var(--color-background), var(--color-primary) 12%);
     box-shadow: 0 2rem 7rem color-mix(in srgb, var(--color-foreground), transparent 90%);
 
+    .ankore-logo {
+      width: 100%;
+      height: 100%;
+    }
+
     span {
       display: flex;
       align-items: center;
@@ -233,6 +242,16 @@ export default createIdentityWorker(config)</code></pre>
         content: '✓';
       }
     }
+  }
+
+  &__hero-logo {
+    display: grid;
+    place-items: center;
+    justify-self: center;
+    width: min(15rem, 58vw);
+    aspect-ratio: 90 / 99;
+    margin-bottom: var(--space-s);
+    color: color-mix(in srgb, var(--color-foreground), var(--color-primary) 22%);
   }
 
   &__section-heading {

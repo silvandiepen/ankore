@@ -37,12 +37,16 @@ body::before {
 .ankore-brand-mark {
   display: inline-grid;
   place-items: center;
-  width: 1.8rem;
-  height: 1.8rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 999px;
-  background: var(--color-primary);
-  color: var(--color-primary-text);
-  font-weight: 800;
+  background: color-mix(in srgb, var(--color-background), var(--color-primary) 22%);
+  color: var(--color-foreground);
+
+  .ankore-logo {
+    width: 1.35rem;
+    height: 1.5rem;
+  }
 }
 
 pre {

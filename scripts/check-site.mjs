@@ -10,6 +10,8 @@ const requiredFiles = [
   'src/docs.ts',
   'src/env.d.ts',
   'public/_redirects',
+  'public/ankore-logo.svg',
+  'src/components/AnkoreLogo.vue',
   'src/pages/HomePage.vue',
   'src/pages/WhyPage.vue',
   'src/pages/ArchitecturePage.vue',
@@ -77,6 +79,7 @@ if (existsSync(homePath)) {
   if (!home.includes('products-using-ankore')) failures.push('HomePage missing products-using-ankore section')
   if (!home.includes('max-width: 7ch')) failures.push('HomePage hero h1 max-width must be visibly narrow')
   if (!home.includes('font-size: clamp(4rem, 13vw, 10rem)')) failures.push('HomePage hero h1 font-size must be visibly oversized')
+  if (!home.includes('<AnkoreLogo')) failures.push('HomePage missing Ankore logo in hero')
   for (const phrase of ['Most auth systems start with the heaviest question', 'Small pieces that cover the whole identity lifecycle', 'The upgrade path is explicit']) {
     if (!home.includes(phrase)) failures.push(`HomePage missing richer content phrase: ${phrase}`)
   }

@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { PillHeader } from '@sil/ui'
+import AnkoreLogo from './components/AnkoreLogo.vue'
 
 const route = useRoute()
 
@@ -26,7 +27,9 @@ const currentPath = computed(() => route.path)
     :current-path="currentPath"
   >
     <template #brand-mark>
-      <span class="ankore-brand-mark" aria-hidden="true">A</span>
+      <span class="ankore-brand-mark" aria-hidden="true">
+        <AnkoreLogo />
+      </span>
     </template>
   </PillHeader>
 

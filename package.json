@@ -33,6 +33,7 @@
     "check": "npm run typecheck && npm run build && npm run test && npm run pack:check && npm run docs:check && npm run examples:check && npm run site:check && npm run site:typecheck && npm run site:build",
     "pack:check": "npm pack --dry-run",
     "prepack": "npm run build",
+    "prepare": "npm run build",
     "docs:check": "node scripts/check-product.mjs",
     "examples:check": "node scripts/check-example.mjs",
     "site:check": "node scripts/check-site.mjs",

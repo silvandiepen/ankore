@@ -12,19 +12,21 @@ describe('package install surface', () => {
     try {
       const packed = run('npm', ['pack', '--silent'], { cwd: root, encoding: 'utf8', env }).trim().split('\n').at(-1)!
       run('npm', ['init', '-y'], { cwd: temp, stdio: 'ignore', env })
-      run('npm', ['install', join(root, packed)], { cwd: temp, stdio: 'ignore', env })
+      run('npm', ['install', join(root, packed), 'vitest@^4.1.8'], { cwd: temp, stdio: 'ignore', env })
       writeFileSync(join(temp, 'check.mjs'), `
         import { normalizeConfig } from 'ankore'
         import { createIdentityWorker } from 'ankore/worker'
         import { createAnkoreClient } from 'ankore/client'
+        import { describeIdentityContract } from 'ankore/testing'
         if (typeof normalizeConfig !== 'function') throw new Error('missing normalizeConfig')
         if (typeof createIdentityWorker !== 'function') throw new Error('missing worker')
         if (typeof createAnkoreClient !== 'function') throw new Error('missing client')
+        if (typeof describeIdentityContract !== 'function') throw new Error('missing testing helper')
       `)
       run('node', ['check.mjs'], { cwd: temp, stdio: 'inherit', env })
       expect(packed).toMatch(/^ankore-/)
     } finally {
       rmSync(temp, { recursive: true, force: true })
     }
-  })
+  }, 30_000)
 })

@@ -41,8 +41,8 @@ Ankore is a full product when all of these are true:
 - [x] API-key route shell exists.
 - [x] Entitlement route shell exists.
 - [x] Contract tests exist for the current route set.
-- [ ] Export documented test helper `ankore/testing` or remove that docs claim until implemented.
-- [ ] Add package `engines` field and verify local/CI Node version expectations.
+- [x] Export documented test helper `ankore/testing` or remove that docs claim until implemented.
+- [x] Add package `engines` field and verify local/CI Node version expectations.
 - [ ] Add explicit public API docs generated from source types or maintained manually.
 - [ ] Add rate limiting implementation, not just policy language.
 - [ ] Add cookie session support when enabled by config.
@@ -130,13 +130,13 @@ If speed matters more than custom design, use VitePress first and migrate later.
 
 **Outcome:** Docs and package exports match. CI proves installed-package usage.
 
-- [ ] Run full validation with a writable npm cache: `NPM_CONFIG_CACHE=/tmp/ankore-npm-cache npm run check`.
-- [ ] Fix or document any local environment cache issue separately from package health.
-- [ ] Inspect every README/docs code sample and verify each import path exists.
-- [ ] Either implement `ankore/testing` export or remove the contract-test import example from docs.
-- [ ] Add `exports` entries for any public testing/config/schema utilities we intentionally support.
-- [ ] Add tests that import every documented public export from a packed tarball.
-- [ ] Add `engines.node` to `package.json` once the supported runtime is chosen.
+- [x] Run full validation with a writable npm cache: `NPM_CONFIG_CACHE=/tmp/ankore-npm-cache npm run check`.
+- [x] Fix or document any local environment cache issue separately from package health.
+- [x] Inspect every README/docs code sample and verify each import path exists.
+- [x] Either implement `ankore/testing` export or remove the contract-test import example from docs.
+- [x] Add `exports` entries for any public testing/config/schema utilities we intentionally support.
+- [x] Add tests that import every documented public export from a packed tarball.
+- [x] Add `engines.node` to `package.json` once the supported runtime is chosen.
 - [ ] Add `npm run docs:check` or equivalent link/sample checker.
 - [ ] Commit as `fix: align docs with public package exports`.
 
@@ -277,8 +277,8 @@ Both:
 
 ## 4. Suggested implementation order
 
-1. Fix docs/package mismatch around `ankore/testing`.
-2. Add complete docs pages: `WHY`, `QUICKSTART`, `CONFIG`, `API`, `CLIENT`, `SECURITY`.
+1. Add complete docs pages: `WHY`, `QUICKSTART`, `CONFIG`, `API`, `CLIENT`, `SECURITY`.
+2. Add `npm run docs:check` or equivalent link/sample checker.
 3. Add runnable Worker example and smoke tests.
 4. Add marketing/docs site skeleton.
 5. Move existing docs into site navigation.
@@ -306,6 +306,6 @@ The next implementation PR after this TODO should include:
 
 - [ ] A corrected README that no longer describes Ankore as only a scaffold.
 - [ ] A docs index with clear install/quickstart/API paths.
-- [ ] Either implemented or removed `ankore/testing` docs.
+- [x] Either implemented or removed `ankore/testing` docs.
 - [ ] A runnable example or explicit task branch for it.
 - [ ] Full validation output in the PR body.

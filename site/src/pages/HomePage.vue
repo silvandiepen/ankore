@@ -44,7 +44,7 @@ const productsUsingAnkore = [
   <main :class="bemm()">
     <section :class="[bemm('section'), bemm('hero')]">
       <div :class="bemm('hero-copy')">
-        <p :class="bemm('eyebrow')">anchor + encore</p>
+        <h6 :class="bemm('eyebrow')">anchor + encore</h6>
         <h1 :class="bemm('title')">Identity continuity before accounts.</h1>
         <p :class="bemm('lede')">
           Ankore is a lean Worker module for products that need remembered users,
@@ -83,7 +83,7 @@ const productsUsingAnkore = [
 
     <section :class="[bemm('section'), bemm('intro')]" aria-labelledby="problem-title">
       <div :class="bemm('section-heading')">
-        <p :class="bemm('eyebrow')">Problem</p>
+        <h6 :class="bemm('eyebrow')">Problem</h6>
         <h2 id="problem-title">Most auth systems start with the heaviest question.</h2>
       </div>
       <div :class="bemm('copy-stack')">
@@ -102,7 +102,7 @@ const productsUsingAnkore = [
 
     <section :class="[bemm('section'), bemm('modules')]" aria-labelledby="modules-title">
       <div :class="bemm('section-heading')">
-        <p :class="bemm('eyebrow')">Surface area</p>
+        <h6 :class="bemm('eyebrow')">Surface area</h6>
         <h2 id="modules-title">Small pieces for the full identity lifecycle.</h2>
       </div>
       <div :class="bemm('card-grid')">
@@ -116,7 +116,7 @@ const productsUsingAnkore = [
 
     <section :class="[bemm('section'), bemm('feature-band')]" aria-labelledby="flow-title">
       <div :class="bemm('band-copy')">
-        <p :class="bemm('eyebrow')">Flow</p>
+        <h6 :class="bemm('eyebrow')">Flow</h6>
         <h2 id="flow-title">The upgrade path stays explicit.</h2>
         <p>
           Start with useful anonymous state, then add proof only when the experience asks for it.
@@ -131,7 +131,7 @@ const productsUsingAnkore = [
 
     <section :class="[bemm('section'), bemm('quickstart')]" aria-labelledby="quickstart-title">
       <div :class="bemm('quickstart-copy')">
-        <p :class="bemm('eyebrow')">10-minute path</p>
+        <h6 :class="bemm('eyebrow')">10-minute path</h6>
         <h2 id="quickstart-title">Install, bind D1, deploy.</h2>
         <p>
           The package ships Worker handlers, client helpers, migrations, a typed contract test,
@@ -149,7 +149,7 @@ export default createIdentityWorker(config)</code></pre>
 
     <section :class="[bemm('section'), bemm('products')]" aria-labelledby="products-title">
       <div :class="bemm('section-heading')">
-        <p :class="bemm('eyebrow')">Used by</p>
+        <h6 :class="bemm('eyebrow')">Used by</h6>
         <h2 id="products-title">Products using Ankore.</h2>
       </div>
       <div :class="bemm('product-grid')">
@@ -453,7 +453,7 @@ export default createIdentityWorker(config)</code></pre>
 
   &__band-copy,
   &__quickstart-copy {
-    p:not(.ankore-home__eyebrow) {
+    p {
       color: color-mix(in srgb, currentColor, transparent 28%);
       line-height: 1.6;
     }

@@ -69,6 +69,8 @@ identity_
 
 ## Current state
 
-`ankore@0.1.1` is the next npm release target for Tiko integration. It includes the initial identity core plus GitHub-install build hygiene, installed-package export coverage, and device resume support for products that restore a known device with `{ id, secret }`.
+`ankore@0.1.0` is published on npm. Releases are automated with semantic-release: each merge to `main` analyzes conventional commits, chooses the next npm version, publishes with provenance, and creates release notes.
 
-It is not yet a complete product experience. The next work is productization: align public exports with docs, write full usage/API/security documentation, add a runnable Worker example, build the marketing/docs site, harden rate limiting and challenge attempts, and prepare Tiko/Mikki adoption plans. See [Full product TODO](docs/PRODUCT_TODO.md).
+The next automated npm release includes the initial identity core plus GitHub-install build hygiene, installed-package export coverage, and device resume support for products that restore a known device with `{ id, secret }`.
+
+It is not yet a complete product experience. The next work is Tiko/Mikki adoption and continued hardening. See [Full product TODO](docs/PRODUCT_TODO.md).

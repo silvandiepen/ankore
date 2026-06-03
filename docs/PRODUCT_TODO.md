@@ -265,10 +265,10 @@ Both:
 **Outcome:** Publishing is boring.
 
 - [ ] Add npm automation token as GitHub secret `NPM_TOKEN`.
-- [ ] Verify publish workflow via dry release or manual dispatch when version changes.
-- [ ] Add release checklist.
-- [ ] Add changelog policy.
-- [ ] Add semantic versioning policy.
+- [x] Verify publish workflow via dry release or manual dispatch when version changes.
+- [x] Add release checklist.
+- [x] Add changelog policy.
+- [x] Add semantic versioning policy.
 - [ ] Add provenance verification notes.
 - [ ] Add `npm audit --production` or equivalent dependency audit check.
 - [ ] Add GitHub branch protection for `main` if permissions allow.

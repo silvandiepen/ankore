@@ -3,6 +3,7 @@ import { defaultDocsSlug, docsPages } from './docs'
 
 export const docsRoutePaths = [
   '/docs',
+  '/docs/why',
   '/docs/quickstart',
   '/docs/config',
   '/docs/api',
@@ -16,6 +17,9 @@ export const docsRoutePaths = [
 
 const routes: RouteRecordRaw[] = [
   { path: '/', name: 'home', component: () => import('./pages/HomePage.vue') },
+  { path: '/why', name: 'why', component: () => import('./pages/WhyPage.vue') },
+  { path: '/architecture', name: 'architecture', component: () => import('./pages/ArchitecturePage.vue') },
+  { path: '/integrations', name: 'integrations', component: () => import('./pages/IntegrationsPage.vue') },
   {
     path: '/docs',
     component: () => import('./pages/DocsLayout.vue'),

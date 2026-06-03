@@ -9,13 +9,21 @@ const requiredFiles = [
   'src/router.ts',
   'src/docs.ts',
   'src/env.d.ts',
+  'public/_redirects',
   'src/pages/HomePage.vue',
+  'src/pages/WhyPage.vue',
+  'src/pages/ArchitecturePage.vue',
+  'src/pages/IntegrationsPage.vue',
   'src/pages/DocsLayout.vue',
   'src/pages/DocPage.vue',
 ]
 
 const requiredRoutes = [
+  '/why',
+  '/architecture',
+  '/integrations',
   '/docs',
+  '/docs/why',
   '/docs/quickstart',
   '/docs/config',
   '/docs/api',
@@ -67,8 +75,17 @@ if (existsSync(homePath)) {
   const home = readFileSync(homePath, 'utf8')
   if (!home.includes('useBemm(')) failures.push('HomePage must use bemm')
   if (!home.includes('products-using-ankore')) failures.push('HomePage missing products-using-ankore section')
-  if (!home.includes('max-width: 20ch')) failures.push('HomePage hero h1 max-width must be 20ch')
-  if (!home.includes('font-size: clamp(3rem, 6vw, 8.5rem)')) failures.push('HomePage hero h1 font-size must match requested clamp')
+  if (!home.includes('max-width: 7ch')) failures.push('HomePage hero h1 max-width must be visibly narrow')
+  if (!home.includes('font-size: clamp(4rem, 13vw, 10rem)')) failures.push('HomePage hero h1 font-size must be visibly oversized')
+  for (const phrase of ['Most auth systems start with the heaviest question', 'Small pieces that cover the whole identity lifecycle', 'The upgrade path is explicit']) {
+    if (!home.includes(phrase)) failures.push(`HomePage missing richer content phrase: ${phrase}`)
+  }
+}
+
+const redirectsPath = join(siteRoot, 'public/_redirects')
+if (existsSync(redirectsPath)) {
+  const redirects = readFileSync(redirectsPath, 'utf8')
+  if (!redirects.includes('/* /index.html 200')) failures.push('site/public/_redirects missing SPA fallback')
 }
 
 const docsLayoutPath = join(siteRoot, 'src/pages/DocsLayout.vue')

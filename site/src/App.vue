@@ -7,9 +7,10 @@ const route = useRoute()
 
 const navItems = [
   { label: 'Home', to: '/', exact: true },
+  { label: 'Why', to: '/why' },
+  { label: 'Architecture', to: '/architecture' },
+  { label: 'Integrations', to: '/integrations' },
   { label: 'Docs', to: '/docs/quickstart' },
-  { label: 'API', to: '/docs/api' },
-  { label: 'Security', to: '/docs/security' },
 ]
 
 const currentPath = computed(() => route.path)

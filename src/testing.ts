@@ -62,6 +62,21 @@ export function describeIdentityContract(name: string, options: IdentityContract
       })
     })
 
+    it('restores an existing device with its device secret', async () => {
+      const { worker } = makeHarness(options)
+      const created = await readJson(await makeRequest(worker, '/v1/identity/device', { method: 'POST' }))
+
+      const restored = await makeRequest(worker, '/v1/identity/device', {
+        method: 'POST',
+        body: JSON.stringify({ device: { id: created.device.id, secret: created.device.secret } })
+      })
+      expect(restored.status).toBe(200)
+      const restoredBody = await readJson(restored)
+      expect(restoredBody.subject.id).toBe(created.subject.id)
+      expect(restoredBody.device.id).toBe(created.device.id)
+      expect(restoredBody.session.token).not.toBe(created.session.token)
+    })
+
     it('rotates refreshed sessions and rejects the previous token', async () => {
       const { worker } = makeHarness(options)
       const created = await readJson(await makeRequest(worker, '/v1/identity/device', { method: 'POST' }))

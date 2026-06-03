@@ -60,7 +60,7 @@ export function createIdentityWorker(config: AnkoreConfig, deps: IdentityWorkerD
 
       try {
         if (request.method === 'POST' && relative === '/device') {
-          return withCors(await bootstrapDevice(store, normalized, pepper, now()), normalized, request)
+          return withCors(await bootstrapDevice(request, store, normalized, pepper, now()), normalized, request)
         }
 
         if (request.method === 'GET' && relative === '/session') {
@@ -122,7 +122,27 @@ export function createIdentityWorker(config: AnkoreConfig, deps: IdentityWorkerD
   }
 }
 
-async function bootstrapDevice(store: IdentityStore, config: NormalizedAnkoreConfig, pepper: string, at: Date): Promise<Response> {
+async function bootstrapDevice(request: Request, store: IdentityStore, config: NormalizedAnkoreConfig, pepper: string, at: Date): Promise<Response> {
+  const body = await readJson<{ device?: { id?: string; secret?: string } }>(request)
+  const existingDeviceId = typeof body.device?.id === 'string' ? body.device.id : null
+  const existingDeviceSecret = typeof body.device?.secret === 'string' ? body.device.secret : null
+
+  if (existingDeviceId && existingDeviceSecret) {
+    const existingDevice = await store.getDevice(existingDeviceId)
+    const secretHash = await hashSecret(existingDeviceSecret, { pepper, product: config.product, purpose: 'device' })
+    if (existingDevice && !existingDevice.revokedAt && existingDevice.product === config.product && existingDevice.secretHash === secretHash) {
+      const subject = await store.getSubject(existingDevice.subjectId)
+      if (subject && !subject.disabledAt) {
+        const sessionToken = randomToken('ank_')
+        const session = await makeSession(config, subject.id, existingDevice.id, 'bearer', sessionToken, pepper, at)
+        await store.touchDevice(existingDevice.id, at.toISOString())
+        await store.createSession(session)
+        await audit(store, config, 'device.resume', subject.id, at)
+        return Response.json({ subject: publicSubject(subject), device: { id: existingDevice.id, secret: existingDeviceSecret }, session: publicSession(session, sessionToken) }, { status: 200 })
+      }
+    }
+  }
+
   const token = randomToken('ank_')
   const deviceSecret = randomToken('ank_dev_')
   const subject: IdentitySubject = {

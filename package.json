@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": false,
   "type": "module",
-  "description": "Lean identity continuity module for Sil products: anchor + encore.",
+  "description": "Lean identity continuity module: anchor + encore.",
   "license": "UNLICENSED",
   "exports": {
     ".": {
@@ -30,24 +30,27 @@
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run",
-    "check": "npm run typecheck && npm run build && npm run test && npm run pack:check && npm run docs:check && npm run examples:check && npm run site:build",
+    "check": "npm run typecheck && npm run build && npm run test && npm run pack:check && npm run docs:check && npm run examples:check && npm run site:check && npm run site:typecheck && npm run site:build",
     "pack:check": "npm pack --dry-run",
     "prepack": "npm run build",
     "docs:check": "node scripts/check-product.mjs",
     "examples:check": "node scripts/check-example.mjs",
+    "site:check": "node scripts/check-site.mjs",
+    "site:typecheck": "vue-tsc -p site/tsconfig.json --noEmit",
     "site:build": "vite build --config site/vite.config.ts"
   },
   "devDependencies": {
-    "@types/node": "^20.19.0",
-    "typescript": "^5.8.3",
-    "vitest": "^4.1.8",
-    "@vitejs/plugin-vue": "^6.0.2",
     "@sil/ui": "^2.3.5",
+    "@types/node": "^20.19.0",
+    "@vitejs/plugin-vue": "^6.0.2",
     "bemm": "^1.1.4",
     "open-icon": "^1.1.0",
     "sass": "^1.94.2",
+    "typescript": "^5.8.3",
     "vite": "^7.2.6",
+    "vitest": "^4.1.8",
     "vue": "^3.5.25",
+    "vue-router": "^4.6.4",
     "vue-tsc": "^3.1.5"
   },
   "peerDependencies": {

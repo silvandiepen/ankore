@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Ankore exists because identity for Sil products is continuity, not a login screen. Tiko needs child-facing apps to work immediately. Mikki needs disposable tools to be useful before an account exists. Ankore gives those products a shared subject/device/session/account contract without forcing account-first auth.
+Ankore exists because identity is continuity, not a login screen. Some products need to work immediately on a trusted device; others need anonymous sessions that can later attach to recovery, sync, billing, or account control. Ankore provides a shared subject/device/session/account contract without forcing account-first auth.
 
 ## Minimal working example
 

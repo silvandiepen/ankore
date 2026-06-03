@@ -1,6 +1,6 @@
 # Ankore
 
-**Ankore** is the lean identity continuity module for Sil products.
+**Ankore** is a lean identity continuity module for products that should work before accounts.
 
 The name comes from **anchor** + **encore**:
 

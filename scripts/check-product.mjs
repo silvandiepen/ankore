@@ -52,7 +52,7 @@ for (const file of requiredDocs) {
 }
 
 const packageJson = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'))
-for (const script of ['docs:check', 'examples:check', 'site:build']) {
+for (const script of ['docs:check', 'examples:check', 'site:check', 'site:typecheck', 'site:build']) {
   if (!packageJson.scripts?.[script]) failures.push(`package.json missing script ${script}`)
 }
 

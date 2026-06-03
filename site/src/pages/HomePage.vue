@@ -220,9 +220,9 @@ export default createIdentityWorker(config)</code></pre>
   }
 
   &__title {
-    max-width: 11ch !important;
-    font-size: clamp(3.2rem, 8vw, 7.25rem) !important;
-    font-weight: 850;
+    max-width: 18ch;
+    font-size: clamp(3.2rem, 6vw, 7.25rem) !important;
+    font-weight: 100;
   }
 
   &__lede {

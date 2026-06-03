@@ -22,7 +22,7 @@ const currentPath = computed(() => route.path)
     brand-suffix="Ankore"
     brand-aria-label="Ankore home"
     brand-to="/"
-    color-mode="dark"
+    color-mode="auto"
     :nav-items="navItems"
     :current-path="currentPath"
   >

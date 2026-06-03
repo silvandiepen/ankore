@@ -76,11 +76,15 @@ const homePath = join(siteRoot, 'src/pages/HomePage.vue')
 if (existsSync(homePath)) {
   const home = readFileSync(homePath, 'utf8')
   if (!home.includes('useBemm(')) failures.push('HomePage must use bemm')
-  if (!home.includes('products-using-ankore')) failures.push('HomePage missing products-using-ankore section')
-  if (!home.includes('max-width: 7ch')) failures.push('HomePage hero h1 max-width must be visibly narrow')
-  if (!home.includes('font-size: clamp(4rem, 13vw, 10rem)')) failures.push('HomePage hero h1 font-size must be visibly oversized')
+  for (const marker of ["bemm('hero')", "bemm('proof')", "bemm('intro')", "bemm('modules')", "bemm('feature-band')", "bemm('quickstart')", "bemm('products')"]) {
+    if (!home.includes(marker)) failures.push(`HomePage missing section marker: ${marker}`)
+  }
+  for (const marker of ["bemm('hero-card')", "bemm('card-grid')", "bemm('card')", "bemm('product-grid')"]) {
+    if (!home.includes(marker)) failures.push(`HomePage missing card/grid marker: ${marker}`)
+  }
+  if (!home.includes('color-mix(in srgb, var(--color-background)')) failures.push('HomePage must use token-based color-mix surfaces')
   if (!home.includes('<AnkoreLogo')) failures.push('HomePage missing Ankore logo in hero')
-  for (const phrase of ['Most auth systems start with the heaviest question', 'Small pieces that cover the whole identity lifecycle', 'The upgrade path is explicit']) {
+  for (const phrase of ['Identity continuity before accounts', 'Most auth systems start with the heaviest question', 'Small pieces for the full identity lifecycle', 'The upgrade path stays explicit']) {
     if (!home.includes(phrase)) failures.push(`HomePage missing richer content phrase: ${phrase}`)
   }
 }

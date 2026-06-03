@@ -1,0 +1,16 @@
+{
+  "name": "ankore-worker-basic",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "ankore": "^0.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "wrangler": "^4.97.0"
+  }
+}

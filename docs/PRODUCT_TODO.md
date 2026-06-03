@@ -20,8 +20,8 @@ Ankore is a full product when all of these are true:
 - [ ] The npm package has no missing public exports referenced by docs.
 - [ ] Every documented endpoint has request/response examples and error cases.
 - [ ] Local package validation, CI, npm dry-run, and release publishing are repeatable.
-- [ ] There is a dev/staging website deployment for docs review.
-- [ ] The marketing site and docs are versioned with the package.
+- [x] There is a dev/staging website deployment for docs review.
+- [x] The marketing site and docs are versioned with the package.
 - [ ] Security-critical behavior is tested: token hashing, single-use challenges, generic recovery responses, CORS, rate limits, audit events, and no raw secrets in storage/logs.
 - [ ] Product adoption plans exist for Tiko and Mikki, including rollback paths.
 
@@ -43,7 +43,7 @@ Ankore is a full product when all of these are true:
 - [x] Contract tests exist for the current route set.
 - [x] Export documented test helper `ankore/testing` or remove that docs claim until implemented.
 - [x] Add package `engines` field and verify local/CI Node version expectations.
-- [ ] Add explicit public API docs generated from source types or maintained manually.
+- [x] Add explicit public API docs generated from source types or maintained manually.
 - [ ] Add rate limiting implementation, not just policy language.
 - [ ] Add cookie session support when enabled by config.
 - [ ] Add challenge attempt tracking and lockout behavior.
@@ -146,36 +146,36 @@ If speed matters more than custom design, use VitePress first and migrate later.
 
 Create these docs:
 
-- [ ] `docs/WHY.md` — product philosophy and why account-first auth is wrong here.
-- [ ] `docs/QUICKSTART.md` — 10-minute path from install to first session.
-- [ ] `docs/CONFIG.md` — complete config reference.
-- [ ] `docs/API.md` — endpoint reference.
-- [ ] `docs/CLIENT.md` — client helper reference.
-- [ ] `docs/STORAGE.md` — D1 schema and migration guide.
-- [ ] `docs/SECURITY.md` — threat model and guarantees.
-- [ ] `docs/EMAIL.md` — email challenge providers and templates.
-- [ ] `docs/RELEASE.md` — npm/GitHub publishing process.
-- [ ] `docs/TROUBLESHOOTING.md` — common failures and fixes.
+- [x] `docs/WHY.md` — product philosophy and why account-first auth is wrong here.
+- [x] `docs/QUICKSTART.md` — 10-minute path from install to first session.
+- [x] `docs/CONFIG.md` — complete config reference.
+- [x] `docs/API.md` — endpoint reference.
+- [x] `docs/CLIENT.md` — client helper reference.
+- [x] `docs/STORAGE.md` — D1 schema and migration guide.
+- [x] `docs/SECURITY.md` — threat model and guarantees.
+- [x] `docs/EMAIL.md` — email challenge providers and templates.
+- [x] `docs/RELEASE.md` — npm/GitHub publishing process.
+- [x] `docs/TROUBLESHOOTING.md` — common failures and fixes.
 
 Each doc must include:
 
-- [ ] Purpose.
-- [ ] Minimal working example.
-- [ ] Configuration required.
-- [ ] Security notes.
-- [ ] Verification command.
-- [ ] Known limits.
+- [x] Purpose.
+- [x] Minimal working example.
+- [x] Configuration required.
+- [x] Security notes.
+- [x] Verification command.
+- [x] Known limits.
 
 ## Phase C — Build runnable examples
 
 **Outcome:** Examples prove the docs.
 
-- [ ] Create `examples/worker-basic` with Wrangler config, local D1 binding, migration command, and minimal Worker entrypoint.
-- [ ] Add `examples/worker-basic/README.md` with exact local run commands.
-- [ ] Add a smoke test that starts the Worker locally or directly invokes the Worker and calls `/v1/identity/device` then `/v1/identity/session`.
+- [x] Create `examples/worker-basic` with Wrangler config, local D1 binding, migration command, and minimal Worker entrypoint.
+- [x] Add `examples/worker-basic/README.md` with exact local run commands.
+- [x] Add a smoke test that starts the Worker locally or directly invokes the Worker and calls `/v1/identity/device` then `/v1/identity/session`.
 - [ ] Expand `examples/tiko` with Tiko-specific explanation and validated config.
 - [ ] Expand `examples/mikki` with Mikki-specific explanation and validated config.
-- [ ] Add `npm run examples:check`.
+- [x] Add `npm run examples:check`.
 
 ## Phase D — Build marketing website
 
@@ -183,38 +183,38 @@ Each doc must include:
 
 Pages:
 
-- [ ] Home — positioning, hero, install snippet, product promise.
-- [ ] Why — identity continuity doctrine.
-- [ ] Quickstart — shortest working path.
-- [ ] Docs — full docs navigation.
-- [ ] API Reference — route docs.
-- [ ] Tiko — device-first integration story.
-- [ ] Mikki — anonymous-first/account-control integration story.
-- [ ] Security — guarantees and non-goals.
+- [x] Home — positioning, hero, install snippet, product promise.
+- [x] Why — identity continuity doctrine.
+- [x] Quickstart — shortest working path.
+- [x] Docs — full docs navigation.
+- [x] API Reference — route docs.
+- [x] Tiko — device-first integration story.
+- [x] Mikki — anonymous-first/account-control integration story.
+- [x] Security — guarantees and non-goals.
 - [ ] Roadmap — public product status.
 
 Homepage sections:
 
-- [ ] Hero: “Identity continuity for products that work before accounts.”
-- [ ] Problem: login walls break child-facing and disposable-tool flows.
-- [ ] Solution: subject/device/session/account primitives.
-- [ ] Tiko/Mikki cards.
-- [ ] Code quickstart.
-- [ ] Architecture diagram.
-- [ ] Security guarantees.
-- [ ] CTA: install package / read docs / view GitHub.
+- [x] Hero: “Identity continuity for products that work before accounts.”
+- [x] Problem: login walls break child-facing and disposable-tool flows.
+- [x] Solution: subject/device/session/account primitives.
+- [x] Tiko/Mikki cards.
+- [x] Code quickstart.
+- [x] Architecture diagram.
+- [x] Security guarantees.
+- [x] CTA: install package / read docs / view GitHub.
 
 Technical tasks:
 
-- [ ] Add `site/package.json` or root workspace scripts.
-- [ ] Add Vue 3 + Vite site.
-- [ ] Add `@sil/ui` only if design scope includes Sil visual system now.
+- [x] Add `site/package.json` or root workspace scripts.
+- [x] Add Vue 3 + Vite site.
+- [x] Add `@sil/ui` only if design scope includes Sil visual system now.
 - [ ] Add static Markdown ingestion or VitePress-style docs routing.
-- [ ] Add responsive navigation.
-- [ ] Add dark/light theme.
-- [ ] Add `npm run site:build`.
-- [ ] Add CI check for site build.
-- [ ] Add deploy workflow for dev docs site.
+- [x] Add responsive navigation.
+- [x] Add dark/light theme.
+- [x] Add `npm run site:build`.
+- [x] Add CI check for site build.
+- [x] Add deploy workflow for dev docs site.
 
 ## Phase E — Security and correctness hardening
 

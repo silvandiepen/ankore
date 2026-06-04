@@ -22,6 +22,10 @@ export class MemoryIdentityStore implements IdentityStore {
 
   async createSubject(subject: IdentitySubject): Promise<void> { this.subjects.set(subject.id, subject) }
   async getSubject(id: string): Promise<IdentitySubject | null> { return this.subjects.get(id) ?? null }
+  async updateSubjectMetadata(subjectId: string, metadata: Record<string, unknown>, updatedAt: string): Promise<void> {
+    const subject = this.subjects.get(subjectId)
+    if (subject) this.subjects.set(subjectId, { ...subject, metadata, updatedAt })
+  }
 
   async createDevice(device: IdentityDevice): Promise<void> { this.devices.set(device.id, device) }
   async getDevice(id: string): Promise<IdentityDevice | null> { return this.devices.get(id) ?? null }

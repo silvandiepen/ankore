@@ -113,6 +113,23 @@ export function createIdentityWorker(config: AnkoreConfig, deps: IdentityWorkerD
           return json({ entitlements: entitlements.map(entitlement => ({ key: entitlement.key, value: entitlement.value, source: entitlement.source, expiresAt: entitlement.expiresAt })) }, 200, normalized, request)
         }
 
+        if (request.method === 'GET' && relative === '/profile') {
+          const auth = await requireSession(request, store, normalized, pepper, now())
+          if (!auth) return json({ error: 'invalid_session' }, 401, normalized, request)
+          return json({ profile: auth.subject.metadata }, 200, normalized, request)
+        }
+
+        if (request.method === 'PUT' && relative === '/profile') {
+          const auth = await requireSession(request, store, normalized, pepper, now())
+          if (!auth) return json({ error: 'invalid_session' }, 401, normalized, request)
+          const body = await readJson<{ profile?: Record<string, unknown> }>(request)
+          if (!body.profile || typeof body.profile !== 'object') return json({ error: 'invalid_profile' }, 400, normalized, request)
+          const merged = { ...auth.subject.metadata, ...body.profile }
+          await store.updateSubjectMetadata(auth.subject.id, merged, now().toISOString())
+          await audit(store, normalized, 'profile.update', auth.subject.id, now())
+          return json({ profile: merged }, 200, normalized, request)
+        }
+
         return json({ error: 'not_found' }, 404, normalized, request)
       } catch (error) {
         const message = error instanceof Error ? error.message : 'unknown_error'

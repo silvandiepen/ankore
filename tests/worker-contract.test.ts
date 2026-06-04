@@ -212,3 +212,65 @@ describe('Tiko disabled modules', () => {
     expect(response.status).toBe(404)
   })
 })
+
+describe.each([
+  ['Tiko', tikoConfig],
+  ['Mikki', mikkiConfig]
+])('%s profile contract', (_name, config) => {
+  it('reads and updates subject profile metadata', async () => {
+    const { worker } = makeWorker(config)
+    const created = await json(await request(worker, '/v1/identity/device', { method: 'POST' }))
+    const token = created.session.token
+
+    // GET profile — starts empty
+    const initial = await json(await request(worker, '/v1/identity/profile', {
+      headers: { Authorization: `Bearer ${token}` }
+    }))
+    expect(initial.profile).toEqual({})
+
+    // PUT profile — merge metadata
+    const updated = await json(await request(worker, '/v1/identity/profile', {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ profile: { parentCodeHash: 'abc123', nickname: 'test' } })
+    }))
+    expect(updated.profile).toMatchObject({ parentCodeHash: 'abc123', nickname: 'test' })
+
+    // GET profile again — persisted
+    const reloaded = await json(await request(worker, '/v1/identity/profile', {
+      headers: { Authorization: `Bearer ${token}` }
+    }))
+    expect(reloaded.profile).toMatchObject({ parentCodeHash: 'abc123', nickname: 'test' })
+
+    // PUT profile — merge updates without losing existing keys
+    const merged = await json(await request(worker, '/v1/identity/profile', {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ profile: { nickname: 'updated' } })
+    }))
+    expect(merged.profile).toMatchObject({ parentCodeHash: 'abc123', nickname: 'updated' })
+  })
+
+  it('rejects profile access without session', async () => {
+    const { worker } = makeWorker(config)
+    expect((await request(worker, '/v1/identity/profile')).status).toBe(401)
+    expect((await request(worker, '/v1/identity/profile', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ profile: { foo: 'bar' } })
+    })).status).toBe(401)
+  })
+
+  it('rejects invalid profile payload', async () => {
+    const { worker } = makeWorker(config)
+    const created = await json(await request(worker, '/v1/identity/device', { method: 'POST' }))
+    const token = created.session.token
+
+    const response = await request(worker, '/v1/identity/profile', {
+      method: 'PUT',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ profile: 'not-an-object' })
+    })
+    expect(response.status).toBe(400)
+  })
+})

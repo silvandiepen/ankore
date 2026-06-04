@@ -12,6 +12,7 @@ import type {
 export interface IdentityStore {
   createSubject(subject: IdentitySubject): Promise<void>
   getSubject(id: string): Promise<IdentitySubject | null>
+  updateSubjectMetadata(subjectId: string, metadata: Record<string, unknown>, updatedAt: string): Promise<void>
 
   createDevice(device: IdentityDevice): Promise<void>
   getDevice(id: string): Promise<IdentityDevice | null>

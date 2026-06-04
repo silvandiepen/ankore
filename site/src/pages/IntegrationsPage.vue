@@ -1,42 +1,36 @@
 <script setup lang="ts">
-import { Button } from '@sil/ui'
+import { computed } from 'vue'
+import { Button, Icon } from '@sil/ui'
 import { useBemm } from 'bemm'
+import { useI18n } from '../i18n'
+
+interface IntegrationPath {
+  readonly title: string
+  readonly items: readonly string[]
+}
 
 const bemm = useBemm('ankore-page', { return: 'string' })
+const { t, i18n, locale } = useI18n()
+const cardIcons = ['misc/fingerprint', 'misc/key', 'ui/link', 'misc/shield-check']
 
-const paths = [
-  {
-    title: 'Browser products',
-    items: ['Create or resume a device identity', 'Keep drafts and local product data attached', 'Upgrade to recovery without moving records'],
-  },
-  {
-    title: 'Worker APIs',
-    items: ['Verify Ankore sessions at API boundaries', 'Use subject ids as product owners', 'Attach plan and entitlement checks'],
-  },
-  {
-    title: 'Service access',
-    items: ['Issue API keys from the same identity core', 'Audit key usage by subject', 'Revoke credentials without account rewrites'],
-  },
-  {
-    title: 'Recovery flows',
-    items: ['Send challenge emails from a configured provider', 'Bind verified recovery handles', 'Restore access to the original subject'],
-  },
-] as const
+const paths = computed(() => {
+  locale.value
+  const value = i18n.raw('integrations.paths')
+  return Array.isArray(value) ? (value as IntegrationPath[]) : []
+})
 </script>
 
 <template>
   <main :class="bemm()">
     <section :class="bemm('hero')">
-      <p :class="bemm('eyebrow')">Integrations</p>
-      <h1>Adopt the parts your product actually needs.</h1>
-      <p>
-        Ankore is not a replacement for every account system. It is the continuity core that
-        lets product state survive across anonymous, recovered, and account-backed use.
-      </p>
-      <Button variant="primary" to="/docs/client">Open client docs</Button>
+      <p :class="bemm('eyebrow')">{{ t('integrations.eyebrow') }}</p>
+      <h1>{{ t('integrations.title') }}</h1>
+      <p>{{ t('integrations.intro') }}</p>
+      <Button variant="primary" to="/docs/client">{{ t('integrations.action') }}</Button>
     </section>
-    <section :class="bemm('grid')" aria-label="Integration paths">
-      <article v-for="path in paths" :key="path.title" :class="bemm('card')">
+    <section :class="bemm('grid')" :aria-label="t('integrations.aria')">
+      <article v-for="(path, index) in paths" :key="path.title" :class="bemm('card')">
+        <span :class="bemm('card-icon')" aria-hidden="true"><Icon :name="cardIcons[index % cardIcons.length]" size="medium" /></span>
         <h2>{{ path.title }}</h2>
         <ul>
           <li v-for="item in path.items" :key="item">{{ item }}</li>
@@ -48,9 +42,15 @@ const paths = [
 
 <style lang="scss">
 .ankore-page {
-  width: min(1120px, calc(100% - 2rem));
+  width: min(1400px, 100%);
   margin: 0 auto;
-  padding: calc(var(--space) * 8) 0 var(--spacing);
+  padding: calc(var(--space) * 5.5) 0 0;
+
+  &__hero,
+  &__grid {
+    box-sizing: border-box;
+    padding: var(--spacing);
+  }
 
   &__hero {
     display: grid;
@@ -58,10 +58,11 @@ const paths = [
     margin-bottom: var(--spacing);
 
     h1 {
-      max-width: 12ch;
+      max-width: 18ch;
       margin: 0;
-      font-size: clamp(3.5rem, 10vw, 8.5rem);
-      line-height: .9;
+      font-size: clamp(3.2rem, 6vw, 7.25rem) !important;
+      font-weight: 100;
+      line-height: 1.02;
       letter-spacing: 0;
     }
 
@@ -87,13 +88,14 @@ const paths = [
   }
 
   &__card {
+    position: relative;
     padding: var(--space-l);
     border: 1px solid color-mix(in srgb, var(--color-foreground), transparent 88%);
     border-radius: 2rem;
     background: color-mix(in srgb, var(--color-background), var(--color-foreground) 4%);
 
     h2, h3 {
-      margin-top: 0;
+      margin-top: calc(var(--space-l) * 1.6);
       letter-spacing: 0;
     }
 
@@ -101,6 +103,19 @@ const paths = [
       color: color-mix(in srgb, currentColor, transparent 24%);
       line-height: 1.65;
     }
+  }
+
+  &__card-icon {
+    position: absolute;
+    top: var(--space-l);
+    left: var(--space-l);
+    display: grid;
+    place-items: center;
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: .85rem;
+    background: color-mix(in srgb, var(--color-background), var(--color-foreground) 7%);
+    color: color-mix(in srgb, var(--color-foreground), transparent 12%);
   }
 }
 

@@ -8,6 +8,7 @@ import security from '../../docs/SECURITY.md?raw'
 import email from '../../docs/EMAIL.md?raw'
 import release from '../../docs/RELEASE.md?raw'
 import troubleshooting from '../../docs/TROUBLESHOOTING.md?raw'
+import { lezuI18n } from './i18n'
 
 export interface DocsPage {
   readonly slug: string
@@ -16,21 +17,38 @@ export interface DocsPage {
   readonly content: string
 }
 
-export const docsPages = [
-  { slug: 'why', title: 'Why Ankore', description: 'Identity continuity, not an account wall.', content: why },
-  { slug: 'quickstart', title: 'Quickstart', description: 'Install Ankore and boot a Worker in minutes.', content: quickstart },
-  { slug: 'config', title: 'Configuration', description: 'Required bindings, secrets, origins, and rollout settings.', content: config },
-  { slug: 'api', title: 'API', description: 'HTTP endpoints for subjects, devices, sessions, accounts, keys, and entitlements.', content: api },
-  { slug: 'client', title: 'Client usage', description: 'Browser integration for anonymous-first apps.', content: client },
-  { slug: 'storage', title: 'Storage', description: 'D1 schema, migrations, retention, and operational notes.', content: storage },
-  { slug: 'security', title: 'Security', description: 'Threat model, secret handling, CORS, challenges, and audit trails.', content: security },
-  { slug: 'email', title: 'Email', description: 'Challenge delivery, provider hooks, and recovery flows.', content: email },
-  { slug: 'release', title: 'Release', description: 'Versioning, packaging, CI checks, and promotion steps.', content: release },
-  { slug: 'troubleshooting', title: 'Troubleshooting', description: 'Common integration failures and verification commands.', content: troubleshooting },
-] as const satisfies readonly DocsPage[]
+const docsContent = {
+  why,
+  quickstart,
+  config,
+  api,
+  client,
+  storage,
+  security,
+  email,
+  release,
+  troubleshooting,
+} as const
+
+export type DocsSlug = keyof typeof docsContent
+
+export const docsSlugs = Object.keys(docsContent) as DocsSlug[]
+
+export const docsPages = docsSlugs.map((slug) => getDocsPage(slug)) as DocsPage[]
 
 export const defaultDocsSlug = 'quickstart'
 
 export function getDocsPage(slug: string): DocsPage | undefined {
-  return docsPages.find((page) => page.slug === slug)
+  if (!isDocsSlug(slug)) return undefined
+
+  return {
+    slug,
+    title: lezuI18n.t(`docs.${slug}.title`),
+    description: lezuI18n.t(`docs.${slug}.description`),
+    content: docsContent[slug],
+  }
+}
+
+function isDocsSlug(slug: string): slug is DocsSlug {
+  return slug in docsContent
 }

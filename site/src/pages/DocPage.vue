@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 import { Markdown } from '@sil/ui'
 import { useBemm } from 'bemm'
 import { defaultDocsSlug, getDocsPage } from '../docs'
+import { useI18n } from '../i18n'
 
 const props = defineProps<{
   slug?: string
@@ -11,8 +12,10 @@ const props = defineProps<{
 
 const bemm = useBemm('ankore-doc-page', { return: 'string' })
 const route = useRoute()
+const { t, locale } = useI18n()
 
 const page = computed(() => {
+  locale.value
   const slug = props.slug ?? String(route.params.slug ?? defaultDocsSlug)
   return getDocsPage(slug) ?? getDocsPage(defaultDocsSlug)
 })
@@ -21,7 +24,7 @@ const page = computed(() => {
 <template>
   <article v-if="page" :class="bemm()">
     <header :class="bemm('header')">
-      <p :class="bemm('eyebrow')">Documentation</p>
+      <p :class="bemm('eyebrow')">{{ t('common.documentation') }}</p>
       <h1>{{ page.title }}</h1>
       <p>{{ page.description }}</p>
     </header>
@@ -31,15 +34,17 @@ const page = computed(() => {
 
 <style lang="scss">
 .ankore-doc-page {
-  max-width: 780px;
+  max-width: 920px;
 
   &__header {
     margin-bottom: var(--space-xl);
 
     h1 {
+      max-width: 18ch;
       margin: 0;
-      font-size: clamp(2.5rem, 7vw, 5rem);
-      line-height: 1;
+      font-size: clamp(3.2rem, 6vw, 7.25rem) !important;
+      font-weight: 100;
+      line-height: 1.02;
       letter-spacing: 0;
     }
 
@@ -79,7 +84,7 @@ const page = computed(() => {
     }
 
     a:not(.button) {
-      color: var(--color-primary);
+      color: color-mix(in srgb, var(--color-foreground), transparent 8%);
     }
   }
 }

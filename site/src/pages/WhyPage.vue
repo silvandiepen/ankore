@@ -1,42 +1,36 @@
 <script setup lang="ts">
-import { Button } from '@sil/ui'
+import { computed } from 'vue'
+import { Button, Icon } from '@sil/ui'
 import { useBemm } from 'bemm'
+import { useI18n } from '../i18n'
+
+interface Reason {
+  readonly title: string
+  readonly text: string
+}
 
 const bemm = useBemm('ankore-page', { return: 'string' })
+const { t, i18n, locale } = useI18n()
+const cardIcons = ['misc/fingerprint', 'misc/key', 'ui/link', 'misc/shield-check']
 
-const reasons = [
-  {
-    title: 'Continuity is not the same as account management',
-    text: 'A product often needs to remember a person or device before it needs a profile. Ankore keeps that first identity primitive small and portable.',
-  },
-  {
-    title: 'Recovery should be an upgrade, not a gate',
-    text: 'Email challenges, account links, and ownership proofs are added when a user wants durability. The first session can stay lightweight.',
-  },
-  {
-    title: 'Product state should survive auth changes',
-    text: 'Anonymous usage, recovered access, and account-backed access all point at the same subject instead of forcing data migration between auth modes.',
-  },
-  {
-    title: 'The boundary should be inspectable',
-    text: 'A small Worker + D1 module is easier to audit than a broad auth platform. The product decides which capabilities to enable.',
-  },
-] as const
+const reasons = computed(() => {
+  locale.value
+  const value = i18n.raw('why.reasons')
+  return Array.isArray(value) ? (value as Reason[]) : []
+})
 </script>
 
 <template>
   <main :class="bemm()">
     <section :class="bemm('hero')">
-      <p :class="bemm('eyebrow')">Why Ankore</p>
-      <h1>Stop asking for accounts before value exists.</h1>
-      <p>
-        Ankore exists for products where “remember me” matters before “sign me up”. It gives
-        teams a stable subject model first, then lets stronger proof attach over time.
-      </p>
-      <Button variant="primary" to="/docs/why">Read the full rationale</Button>
+      <p :class="bemm('eyebrow')">{{ t('why.eyebrow') }}</p>
+      <h1>{{ t('why.title') }}</h1>
+      <p>{{ t('why.intro') }}</p>
+      <Button variant="primary" to="/docs/why">{{ t('why.action') }}</Button>
     </section>
-    <section :class="bemm('grid')" aria-label="Reasons">
-      <article v-for="reason in reasons" :key="reason.title" :class="bemm('card')">
+    <section :class="bemm('grid')" :aria-label="t('why.aria')">
+      <article v-for="(reason, index) in reasons" :key="reason.title" :class="bemm('card')">
+        <span :class="bemm('card-icon')" aria-hidden="true"><Icon :name="cardIcons[index % cardIcons.length]" size="medium" /></span>
         <h2>{{ reason.title }}</h2>
         <p>{{ reason.text }}</p>
       </article>
@@ -46,9 +40,15 @@ const reasons = [
 
 <style lang="scss">
 .ankore-page {
-  width: min(1120px, calc(100% - 2rem));
+  width: min(1400px, 100%);
   margin: 0 auto;
-  padding: calc(var(--space) * 8) 0 var(--spacing);
+  padding: calc(var(--space) * 5.5) 0 0;
+
+  &__hero,
+  &__grid {
+    box-sizing: border-box;
+    padding: var(--spacing);
+  }
 
   &__hero {
     display: grid;
@@ -56,10 +56,11 @@ const reasons = [
     margin-bottom: var(--spacing);
 
     h1 {
-      max-width: 12ch;
+      max-width: 18ch;
       margin: 0;
-      font-size: clamp(3.5rem, 10vw, 8.5rem);
-      line-height: .9;
+      font-size: clamp(3.2rem, 6vw, 7.25rem) !important;
+      font-weight: 100;
+      line-height: 1.02;
       letter-spacing: 0;
     }
 
@@ -85,13 +86,14 @@ const reasons = [
   }
 
   &__card {
+    position: relative;
     padding: var(--space-l);
     border: 1px solid color-mix(in srgb, var(--color-foreground), transparent 88%);
     border-radius: 2rem;
     background: color-mix(in srgb, var(--color-background), var(--color-foreground) 4%);
 
     h2, h3 {
-      margin-top: 0;
+      margin-top: calc(var(--space-l) * 1.6);
       letter-spacing: 0;
     }
 
@@ -99,6 +101,19 @@ const reasons = [
       color: color-mix(in srgb, currentColor, transparent 24%);
       line-height: 1.65;
     }
+  }
+
+  &__card-icon {
+    position: absolute;
+    top: var(--space-l);
+    left: var(--space-l);
+    display: grid;
+    place-items: center;
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: .85rem;
+    background: color-mix(in srgb, var(--color-background), var(--color-foreground) 7%);
+    color: color-mix(in srgb, var(--color-foreground), transparent 12%);
   }
 }
 

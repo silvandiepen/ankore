@@ -1,0 +1,277 @@
+{
+  "nav": {
+    "why": "Why",
+    "architecture": "Architecture",
+    "integrations": "Integrations",
+    "docs": "Docs"
+  },
+  "header": {
+    "home": "Ankore home",
+    "language": "Language",
+    "theme": "Color mode",
+    "themes": {
+      "system": "System",
+      "light": "Light",
+      "dark": "Dark"
+    }
+  },
+  "common": {
+    "documentation": "Documentation",
+    "backToOverview": "Back to overview",
+    "docsMenu": "Docs menu"
+  },
+  "home": {
+    "eyebrow": "anchor + encore",
+    "heroTitle": "Identity continuity before accounts.",
+    "lede": "Ankore is a lean Worker module for products that need remembered users, trusted devices, recoverable sessions, API keys, and entitlements without forcing sign-up at the first useful moment.",
+    "actions": {
+      "docs": "Start with docs",
+      "architecture": "See architecture"
+    },
+    "heroCard": {
+      "aria": "Identity continuity lifecycle",
+      "subtitle": "small identity core"
+    },
+    "proof": [
+      {
+        "value": "0",
+        "label": "account wall before first use"
+      },
+      {
+        "value": "1",
+        "label": "small Worker package"
+      },
+      {
+        "value": "D1",
+        "label": "portable identity store"
+      }
+    ],
+    "lifecycle": [
+      {
+        "label": "Anonymous subject",
+        "text": "Start saving product state before sign-up."
+      },
+      {
+        "label": "Trusted device",
+        "text": "Remember the browser or native app safely."
+      },
+      {
+        "label": "Recoverable session",
+        "text": "Issue scoped tokens and rotate them cleanly."
+      },
+      {
+        "label": "Optional account",
+        "text": "Attach email, billing, teams, or API keys later."
+      }
+    ],
+    "problem": {
+      "eyebrow": "Problem",
+      "title": "Most auth systems start with the heaviest question.",
+      "copy1": "Products often need a stable identity before they need an account. A user may need to save a draft, keep a device trusted, resume a flow, or recover a link long before they care about passwords, billing, teams, or profiles.",
+      "copy2": "Ankore separates continuity from account management. Begin with an anonymous subject, then attach stronger proof, recovery, ownership, and paid capabilities when the product experience actually asks for them."
+    },
+    "modules": {
+      "eyebrow": "Surface area",
+      "title": "Small pieces for the full identity lifecycle.",
+      "items": [
+        {
+          "label": "Subjects",
+          "text": "Stable user-like identity without requiring a login."
+        },
+        {
+          "label": "Devices",
+          "text": "Bind browsers, apps, and trusted surfaces to a subject."
+        },
+        {
+          "label": "Sessions",
+          "text": "Issue scoped tokens for product APIs and workers."
+        },
+        {
+          "label": "Recovery",
+          "text": "Add email challenges only when the user asks to keep access."
+        },
+        {
+          "label": "API keys",
+          "text": "Create service credentials for integrations and automations."
+        },
+        {
+          "label": "Entitlements",
+          "text": "Attach plan, usage, and feature flags without changing identity."
+        }
+      ]
+    },
+    "flow": {
+      "eyebrow": "Flow",
+      "title": "The upgrade path stays explicit.",
+      "text": "Start with useful anonymous state, then add proof only when the experience asks for it. No auth rewrite. No hidden coupling to a heavyweight provider.",
+      "action": "Read why this exists",
+      "principles": [
+        "No passwords by default",
+        "No account creation front door",
+        "No public user enumeration",
+        "Only hashes for tokens, codes, and secrets"
+      ]
+    },
+    "quickstart": {
+      "eyebrow": "10-minute path",
+      "title": "Install, bind D1, deploy.",
+      "text": "The package ships Worker handlers, client helpers, migrations, a typed contract test, and example Workers so product teams can adopt it without building auth from zero.",
+      "action": "Open quickstart"
+    },
+    "products": {
+      "eyebrow": "Used by",
+      "title": "Products using Ankore.",
+      "items": [
+        {
+          "name": "Tiko",
+          "mark": "Ti",
+          "description": "Device-first continuity for child-facing experiences."
+        },
+        {
+          "name": "Mikki",
+          "mark": "Mi",
+          "description": "Anonymous-first continuity for focused personal tools."
+        }
+      ]
+    }
+  },
+  "why": {
+    "eyebrow": "Why Ankore",
+    "title": "Stop asking for accounts before value exists.",
+    "intro": "Ankore exists for products where “remember me” matters before “sign me up”. It gives teams a stable subject model first, then lets stronger proof attach over time.",
+    "action": "Read the full rationale",
+    "aria": "Reasons",
+    "reasons": [
+      {
+        "title": "Continuity is not the same as account management",
+        "text": "A product often needs to remember a person or device before it needs a profile. Ankore keeps that first identity primitive small and portable."
+      },
+      {
+        "title": "Recovery should be an upgrade, not a gate",
+        "text": "Email challenges, account links, and ownership proofs are added when a user wants durability. The first session can stay lightweight."
+      },
+      {
+        "title": "Product state should survive auth changes",
+        "text": "Anonymous usage, recovered access, and account-backed access all point at the same subject instead of forcing data migration between auth modes."
+      },
+      {
+        "title": "The boundary should be inspectable",
+        "text": "A small Worker + D1 module is easier to audit than a broad auth platform. The product decides which capabilities to enable."
+      }
+    ]
+  },
+  "architecture": {
+    "eyebrow": "Architecture",
+    "title": "A small identity boundary between product code and account features.",
+    "intro": "Ankore is intentionally boring: one Worker package, one database binding, typed client helpers, and explicit configuration for origins, secrets, recovery, and rollout.",
+    "action": "Explore the API",
+    "aria": "Architecture layers",
+    "layers": [
+      [
+        "Product app",
+        "Calls Ankore client helpers, stores public subject/device identifiers, and owns the product experience."
+      ],
+      [
+        "Ankore Worker",
+        "Validates requests, issues sessions, handles recovery challenges, and exposes the identity API."
+      ],
+      [
+        "D1 identity store",
+        "Keeps subjects, devices, sessions, accounts, API keys, entitlements, and audit trails."
+      ],
+      [
+        "Optional providers",
+        "Email delivery, billing, analytics, and product-specific APIs attach through explicit configuration."
+      ]
+    ]
+  },
+  "integrations": {
+    "eyebrow": "Integrations",
+    "title": "Adopt the parts your product actually needs.",
+    "intro": "Ankore is not a replacement for every account system. It is the continuity core that lets product state survive across anonymous, recovered, and account-backed use.",
+    "action": "Open client docs",
+    "aria": "Integration paths",
+    "paths": [
+      {
+        "title": "Browser products",
+        "items": [
+          "Create or resume a device identity",
+          "Keep drafts and local product data attached",
+          "Upgrade to recovery without moving records"
+        ]
+      },
+      {
+        "title": "Worker APIs",
+        "items": [
+          "Verify Ankore sessions at API boundaries",
+          "Use subject ids as product owners",
+          "Attach plan and entitlement checks"
+        ]
+      },
+      {
+        "title": "Service access",
+        "items": [
+          "Issue API keys from the same identity core",
+          "Audit key usage by subject",
+          "Revoke credentials without account rewrites"
+        ]
+      },
+      {
+        "title": "Recovery flows",
+        "items": [
+          "Send challenge emails from a configured provider",
+          "Bind verified recovery handles",
+          "Restore access to the original subject"
+        ]
+      }
+    ]
+  },
+  "docs": {
+    "why": {
+      "title": "Why Ankore",
+      "description": "Identity continuity, not an account wall."
+    },
+    "quickstart": {
+      "title": "Quickstart",
+      "description": "Install Ankore and boot a Worker in minutes."
+    },
+    "config": {
+      "title": "Configuration",
+      "description": "Required bindings, secrets, origins, and rollout settings."
+    },
+    "api": {
+      "title": "API",
+      "description": "HTTP endpoints for subjects, devices, sessions, accounts, keys, and entitlements."
+    },
+    "client": {
+      "title": "Client usage",
+      "description": "Browser integration for anonymous-first apps."
+    },
+    "storage": {
+      "title": "Storage",
+      "description": "D1 schema, migrations, retention, and operational notes."
+    },
+    "security": {
+      "title": "Security",
+      "description": "Threat model, secret handling, CORS, challenges, and audit trails."
+    },
+    "email": {
+      "title": "Email",
+      "description": "Challenge delivery, provider hooks, and recovery flows."
+    },
+    "release": {
+      "title": "Release",
+      "description": "Versioning, packaging, CI checks, and promotion steps."
+    },
+    "troubleshooting": {
+      "title": "Troubleshooting",
+      "description": "Common integration failures and verification commands."
+    }
+  },
+  "footer": {
+    "tagline": "A small identity continuity core for products that should remember people before they ask for accounts.",
+    "navigation": "Footer navigation",
+    "meta": "Anchor first. Account later. Built for Cloudflare Workers and D1.",
+    "hakobsProduct": "A Hakobs product."
+  }
+}

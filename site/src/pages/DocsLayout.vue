@@ -3,13 +3,19 @@ import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { Button } from '@sil/ui'
 import { useBemm } from 'bemm'
-import { docsPages } from '../docs'
+import { docsSlugs, getDocsPage } from '../docs'
+import { useI18n } from '../i18n'
 
 const bemm = useBemm('ankore-docs', { return: 'string' })
 const route = useRoute()
+const { t, locale } = useI18n()
 const sidebarOpen = ref(false)
 
 const currentSlug = computed(() => String(route.params.slug ?? ''))
+const translatedDocsPages = computed(() => {
+  locale.value
+  return docsSlugs.map((slug) => getDocsPage(slug)).filter((page) => page !== undefined)
+})
 
 function closeSidebar(): void {
   sidebarOpen.value = false
@@ -19,10 +25,10 @@ function closeSidebar(): void {
 <template>
   <main :class="bemm()">
     <aside :class="[bemm('sidebar'), sidebarOpen ? 'ankore-docs__sidebar--open' : '']">
-      <RouterLink to="/" :class="bemm('back')" @click="closeSidebar">← Back to overview</RouterLink>
-      <nav :class="bemm('nav')" aria-label="Documentation">
+      <RouterLink to="/" :class="bemm('back')" @click="closeSidebar">← {{ t('common.backToOverview') }}</RouterLink>
+      <nav :class="bemm('nav')" :aria-label="t('common.documentation')">
         <RouterLink
-          v-for="page in docsPages"
+          v-for="page in translatedDocsPages"
           :key="page.slug"
           :to="`/docs/${page.slug}`"
           :class="[bemm('link'), currentSlug === page.slug ? 'ankore-docs__link--active' : '']"
@@ -35,7 +41,7 @@ function closeSidebar(): void {
     </aside>
 
     <section :class="bemm('content')">
-      <Button variant="outline" :class="bemm('toggle')" @click="sidebarOpen = !sidebarOpen">Docs menu</Button>
+      <Button variant="outline" :class="bemm('toggle')" @click="sidebarOpen = !sidebarOpen">{{ t('common.docsMenu') }}</Button>
       <RouterView />
     </section>
   </main>
@@ -46,9 +52,9 @@ function closeSidebar(): void {
   display: grid;
   grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
   gap: var(--space-xl);
-  width: min(1180px, calc(100% - 2rem));
+  width: min(1400px, 100%);
   margin: 0 auto;
-  padding: calc(var(--space) * 7) 0 var(--spacing);
+  padding: calc(var(--space) * 5.5) 0 0;
 
   &__sidebar {
     align-self: start;
@@ -88,7 +94,9 @@ function closeSidebar(): void {
   }
 
   &__content {
+    box-sizing: border-box;
     min-width: 0;
+    padding: var(--spacing);
   }
 
   &__toggle {

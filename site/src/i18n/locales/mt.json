@@ -1,0 +1,277 @@
+{
+  "nav": {
+    "why": "Għaliex",
+    "architecture": "Arkitettura",
+    "integrations": "Integrazzjonijiet",
+    "docs": "Doks"
+  },
+  "header": {
+    "home": "Ankore dar",
+    "language": "Lingwa",
+    "theme": "Modalità tal-kulur",
+    "themes": {
+      "system": "Sistema",
+      "light": "Dawl",
+      "dark": "Dlam"
+    }
+  },
+  "common": {
+    "documentation": "Dokumentazzjoni",
+    "backToOverview": "Lura għall-ħarsa ġenerali",
+    "docsMenu": "menu Docs"
+  },
+  "home": {
+    "eyebrow": "ankra + encore",
+    "heroTitle": "Kontinwità tal-identità qabel il-kontijiet.",
+    "lede": "Ankore huwa modulu tal-Ħaddiem dgħif għal prodotti li jeħtieġu utenti mfakkra, apparati fdati, sessjonijiet li jistgħu jiġu rkuprati, ċwievet API, u drittijiet mingħajr ma jiġu sfurzati reġistrazzjoni fl-ewwel mument utli.",
+    "actions": {
+      "docs": "Ibda bid-doks",
+      "architecture": "Ara l-arkitettura"
+    },
+    "heroCard": {
+      "aria": "Ċiklu tal-ħajja tal-kontinwità tal-identità",
+      "subtitle": "qalba żgħira tal-identità"
+    },
+    "proof": [
+      {
+        "value": "0",
+        "label": "ħajt tal-kont qabel l-ewwel użu"
+      },
+      {
+        "value": "1",
+        "label": "pakkett żgħir tal-Ħaddiem"
+      },
+      {
+        "value": "D1",
+        "label": "maħżen tal-identità portabbli"
+      }
+    ],
+    "lifecycle": [
+      {
+        "label": "Suġġett anonimu",
+        "text": "Ibda ssalva l-istat tal-prodott qabel ma tirreġistra."
+      },
+      {
+        "label": "Apparat affidabbli",
+        "text": "Ftakar il-browser jew l-app nattiva b'mod sikur."
+      },
+      {
+        "label": "Sessjoni rekuperabbli",
+        "text": "Ħruġ tokens b'ambitu u dawwarhom b'mod nadif."
+      },
+      {
+        "label": "Kont fakultattiv",
+        "text": "Ehmeż email, kontijiet, timijiet, jew ċwievet API aktar tard."
+      }
+    ],
+    "problem": {
+      "eyebrow": "Problema",
+      "title": "Il-biċċa l-kbira tas-sistemi ta' awtorizzazzjoni jibdew bl-itqal mistoqsija.",
+      "copy1": "Il-prodotti spiss jeħtieġu identità stabbli qabel ma jkollhom bżonn kont. Utent jista' jkollu bżonn jiffranka abbozz, iżomm apparat fdat, jerġa' jibda fluss, jew jirkupra link ħafna qabel ma jimpurtah mill-passwords, kontijiet, timijiet, jew profili.",
+      "copy2": "Ankore jifred il-kontinwità mill-ġestjoni tal-kont. Ibda b'suġġett anonimu, imbagħad waħħal provi aktar b'saħħithom, irkupru, sjieda, u kapaċitajiet imħallsa meta l-esperjenza tal-prodott fil-fatt titlob għalihom."
+    },
+    "modules": {
+      "eyebrow": "Erja tal-wiċċ",
+      "title": "Biċċiet żgħar għaċ-ċiklu sħiħ tal-ħajja tal-identità.",
+      "items": [
+        {
+          "label": "Suġġetti",
+          "text": "Identità stabbli bħall-utent mingħajr ma teħtieġ login."
+        },
+        {
+          "label": "Apparati",
+          "text": "Orbot browsers, apps, u uċuħ fdati ma' suġġett."
+        },
+        {
+          "label": "Sessjonijiet",
+          "text": "Ħruġ tokens b'ambitu għall-APIs tal-prodott u l-ħaddiema."
+        },
+        {
+          "label": "Irkupru",
+          "text": "Żid sfidi tal-email biss meta l-utent jitlob li jżomm l-aċċess."
+        },
+        {
+          "label": "Ċwievet API",
+          "text": "Oħloq kredenzjali tas-servizz għal integrazzjonijiet u awtomazzjonijiet."
+        },
+        {
+          "label": "Intitolamenti",
+          "text": "Ehmeż il-pjan, l-użu u l-bnadar tal-karatteristika mingħajr ma tbiddel l-identità."
+        }
+      ]
+    },
+    "flow": {
+      "eyebrow": "Fluss",
+      "title": "It-triq tal-upgrade tibqa' espliċita.",
+      "text": "Ibda bi stat anonimu utli, imbagħad żid prova biss meta l-esperjenza titlobha. Nru awth rewrite. L-ebda akkoppjar moħbi ma 'fornitur heavyweight.",
+      "action": "Aqra għaliex dan jeżisti",
+      "principles": [
+        "L-ebda passwords awtomatikament",
+        "L-ebda bieb ta 'quddiem tal-ħolqien ta' kont",
+        "L-ebda enumerazzjoni pubblika tal-utenti",
+        "Hashes biss għal tokens, kodiċijiet, u sigrieti"
+      ]
+    },
+    "quickstart": {
+      "eyebrow": "Mogħdija ta' 10 minuti",
+      "title": "Installa, torbot D1, skjerament.",
+      "text": "Il-pakkett jibgħat Worker handlers, customer helpers, migrazzjonijiet, test ta' kuntratt ittajpjat, u Ħaddiema ta' eżempju sabiex it-timijiet tal-prodotti jkunu jistgħu jadottawha mingħajr bini ta' awtorizzazzjoni minn żero.",
+      "action": "Iftaħ il-quickstart"
+    },
+    "products": {
+      "eyebrow": "Użat minn",
+      "title": "Prodotti li jużaw Ankore.",
+      "items": [
+        {
+          "name": "Tiko",
+          "mark": "Ti",
+          "description": "Kontinwità ta' l-ewwel apparat għal esperjenzi li jiffaċċjaw it-tfal."
+        },
+        {
+          "name": "Mikki",
+          "mark": "Mi",
+          "description": "Kontinwità anonima-ewwel għal għodod personali ffukati."
+        }
+      ]
+    }
+  },
+  "why": {
+    "eyebrow": "Għaliex Ankore",
+    "title": "Ieqaf titlob għall-kontijiet qabel ma jeżisti l-valur.",
+    "intro": "Ankore teżisti għal prodotti fejn \"ftakarni\" hija importanti qabel \"iffirmani\". L-ewwel jagħti lit-timijiet mudell ta 'suġġett stabbli, imbagħad iħalli prova aktar b'saħħitha tehmeż maż-żmien.",
+    "action": "Aqra r-raġunament sħiħ",
+    "aria": "Raġunijiet",
+    "reasons": [
+      {
+        "title": "Il-kontinwità mhix l-istess bħall-ġestjoni tal-kont",
+        "text": "Prodott ħafna drabi jeħtieġ li jiftakar persuna jew apparat qabel ma jkollu bżonn profil. Ankore iżomm dik l-ewwel identità primittiva żgħira u portabbli."
+      },
+      {
+        "title": "L-irkupru għandu jkun titjib, mhux gate",
+        "text": "L-isfidi tal-email, il-links tal-kontijiet, u l-provi tas-sjieda huma miżjuda meta utent irid durabilità. L-ewwel sessjoni tista 'tibqa' ħafifa."
+      },
+      {
+        "title": "L-istat tal-prodott għandu jgħix bidliet ta' awtorizzazzjoni",
+        "text": "L-użu anonimu, l-aċċess irkuprat, u l-aċċess sostnut mill-kont kollha jippuntaw lejn l-istess suġġett minflok ma jisfurzaw il-migrazzjoni tad-dejta bejn il-modi ta’ awtorizzazzjoni."
+      },
+      {
+        "title": "Il-konfini għandu jkun spezzjonabbli",
+        "text": "Modulu Ħaddiem + D1 żgħir huwa aktar faċli biex jiġi awditjat minn pjattaforma ta 'awtentikazzjoni wiesgħa. Il-prodott jiddeċiedi liema kapaċitajiet se jippermetti."
+      }
+    ]
+  },
+  "architecture": {
+    "eyebrow": "Arkitettura",
+    "title": "Limitu żgħir ta' identità bejn il-kodiċi tal-prodott u l-karatteristiċi tal-kont.",
+    "intro": "Ankore huwa intenzjonalment boring: pakkett wieħed tal-Ħaddiem, rabta waħda tad-database, helpers tal-klijenti ittajpjati, u konfigurazzjoni espliċita għall-oriġini, sigrieti, irkupru, u t-tnedija.",
+    "action": "Esplora l-API",
+    "aria": "Saffi tal-arkitettura",
+    "layers": [
+      [
+        "Product app",
+        "Isejjaħ lill-helpers tal-klijenti Ankore, jaħżen l-identifikaturi tas-suġġett/apparat pubbliku, u jippossjedi l-esperjenza tal-prodott."
+      ],
+      [
+        "Ankore Worker",
+        "Jivvalida t-talbiet, joħroġ sessjonijiet, jieħu ħsieb l-isfidi ta 'rkupru, u jesponi l-API tal-identità."
+      ],
+      [
+        "D1 identity store",
+        "Iżomm suġġetti, apparati, sessjonijiet, kontijiet, ċwievet API, drittijiet, u traċċi tal-verifika."
+      ],
+      [
+        "Fornituri fakultattivi",
+        "It-twassil tal-email, il-kontijiet, l-analiżi u l-APIs speċifiċi għall-prodott jehmeż permezz ta’ konfigurazzjoni espliċita."
+      ]
+    ]
+  },
+  "integrations": {
+    "eyebrow": "Integrazzjonijiet",
+    "title": "Adotta l-partijiet li l-prodott tiegħek attwalment jeħtieġ.",
+    "intro": "Ankore mhix sostitut għal kull sistema ta' kont. Hija l-qalba tal-kontinwità li tħalli l-istat tal-prodott jgħix f'użu anonimu, irkuprat u sostnut minn kont.",
+    "action": "Iftaħ id-dokumenti tal-klijenti",
+    "aria": "Mogħdijiet ta' integrazzjoni",
+    "paths": [
+      {
+        "title": "Prodotti tal-browser",
+        "items": [
+          "Oħloq jew ibda identità tal-apparat",
+          "Żomm abbozzi u data tal-prodott lokali mehmuża",
+          "Aġġorna għall-irkupru mingħajr ma ċaqlaq ir-rekords"
+        ]
+      },
+      {
+        "title": "APIs tal-ħaddiema",
+        "items": [
+          "Ivverifika s-sessjonijiet Ankore fil-konfini tal-API",
+          "Uża l-ids tas-suġġett bħala sidien tal-prodotti",
+          "Ehmeż il-pjan u l-kontrolli tal-intitolament"
+        ]
+      },
+      {
+        "title": "Aċċess għas-servizz",
+        "items": [
+          "Ħruġ ċwievet API mill-istess qalba tal-identità",
+          "Awditja l-użu taċ-ċavetta skont is-suġġett",
+          "Irrevoka l-kredenzjali mingħajr kitbiet mill-ġdid tal-kont"
+        ]
+      },
+      {
+        "title": "Flussi ta' rkupru",
+        "items": [
+          "Ibgħat emails ta' sfida minn fornitur konfigurat",
+          "Irbit il-pumi ta' rkupru verifikati",
+          "Irrestawra l-aċċess għas-suġġett oriġinali"
+        ]
+      }
+    ]
+  },
+  "docs": {
+    "why": {
+      "title": "Għaliex Ankore",
+      "description": "Kontinwità tal-identità, mhux ħajt tal-kont."
+    },
+    "quickstart": {
+      "title": "Quickstart",
+      "description": "Installa Ankore u ibda Ħaddiem fi ftit minuti."
+    },
+    "config": {
+      "title": "Konfigurazzjoni",
+      "description": "L-irbit, is-sigrieti, l-oriġini, u l-issettjar tal-introduzzjoni meħtieġa."
+    },
+    "api": {
+      "title": "API",
+      "description": "Punti finali HTTP għal suġġetti, apparati, sessjonijiet, kontijiet, ċwievet, u drittijiet."
+    },
+    "client": {
+      "title": "Użu tal-klijenti",
+      "description": "Integrazzjoni tal-browser għal apps l-ewwel anonimi."
+    },
+    "storage": {
+      "title": "Ħażna",
+      "description": "D1 schema, migrazzjonijiet, żamma, u noti operattivi."
+    },
+    "security": {
+      "title": "Sigurtà",
+      "description": "Mudell ta’ theddid, immaniġġjar sigriet, CORS, sfidi, u traċċi tal-awditjar."
+    },
+    "email": {
+      "title": "Email",
+      "description": "Kunsinna tal-isfida, ganċijiet tal-fornitur, u flussi ta 'rkupru."
+    },
+    "release": {
+      "title": "Rilaxx",
+      "description": "Verżjoni, ippakkjar, kontrolli CI, u passi ta 'promozzjoni."
+    },
+    "troubleshooting": {
+      "title": "Issolvi l-problemi",
+      "description": "Ħsarat komuni ta 'integrazzjoni u kmandi ta' verifika."
+    }
+  },
+  "footer": {
+    "tagline": "Qofol żgħir ta' kontinwità ta' identità għal prodotti li għandhom jiftakru lin-nies qabel ma jitolbu l-kontijiet.",
+    "navigation": "Navigazzjoni fil-qiegħ",
+    "meta": "Ankra l-ewwel. Kont aktar tard. Mibnija għall-Ħaddiema Cloudflare u D1.",
+    "hakobsProduct": "Prodott Hakobs."
+  }
+}

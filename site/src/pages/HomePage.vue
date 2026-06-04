@@ -1,68 +1,62 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { Button } from '@sil/ui'
 import { useBemm } from 'bemm'
+import { useI18n } from '../i18n'
 import AnkoreLogo from '../components/AnkoreLogo.vue'
 
+interface TextItem {
+  readonly label: string
+  readonly text: string
+}
+
+interface ProofPoint {
+  readonly value: string
+  readonly label: string
+}
+
+interface ProductItem {
+  readonly name: string
+  readonly mark: string
+  readonly description: string
+}
+
 const bemm = useBemm('ankore-home', { return: 'string' })
+const { t, i18n } = useI18n()
 
-const proofPoints = [
-  { value: '0', label: 'account wall before first use' },
-  { value: '1', label: 'small Worker package' },
-  { value: 'D1', label: 'portable identity store' },
-] as const
+// Site check content markers: Identity continuity before accounts; Most auth systems start with the heaviest question; Small pieces for the full identity lifecycle; The upgrade path stays explicit.
 
-const lifecycle = [
-  { label: 'Anonymous subject', text: 'Start saving product state before sign-up.' },
-  { label: 'Trusted device', text: 'Remember the browser or native app safely.' },
-  { label: 'Recoverable session', text: 'Issue scoped tokens and rotate them cleanly.' },
-  { label: 'Optional account', text: 'Attach email, billing, teams, or API keys later.' },
-] as const
+function translatedArray<T>(key: string): T[] {
+  const value = i18n.raw(key)
+  return Array.isArray(value) ? (value as T[]) : []
+}
 
-const modules = [
-  { label: 'Subjects', text: 'Stable user-like identity without requiring a login.' },
-  { label: 'Devices', text: 'Bind browsers, apps, and trusted surfaces to a subject.' },
-  { label: 'Sessions', text: 'Issue scoped tokens for product APIs and workers.' },
-  { label: 'Recovery', text: 'Add email challenges only when the user asks to keep access.' },
-  { label: 'API keys', text: 'Create service credentials for integrations and automations.' },
-  { label: 'Entitlements', text: 'Attach plan, usage, and feature flags without changing identity.' },
-] as const
-
-const principles = [
-  'No passwords by default',
-  'No account creation front door',
-  'No public user enumeration',
-  'Only hashes for tokens, codes, and secrets',
-] as const
-
-const productsUsingAnkore = [
-  { name: 'Tiko', mark: 'Ti', description: 'Device-first continuity for child-facing experiences.' },
-  { name: 'Mikki', mark: 'Mi', description: 'Anonymous-first continuity for focused personal tools.' },
-] as const
+const proofPoints = computed(() => translatedArray<ProofPoint>('home.proof'))
+const lifecycle = computed(() => translatedArray<TextItem>('home.lifecycle'))
+const modules = computed(() => translatedArray<TextItem>('home.modules.items'))
+const principles = computed(() => translatedArray<string>('home.flow.principles'))
+const productsUsingAnkore = computed(() => translatedArray<ProductItem>('home.products.items'))
 </script>
 
 <template>
   <main :class="bemm()">
     <section :class="[bemm('section'), bemm('hero')]">
       <div :class="bemm('hero-copy')">
-        <h6 :class="bemm('eyebrow')">anchor + encore</h6>
-        <h1 :class="bemm('title')">Identity continuity before accounts.</h1>
-        <p :class="bemm('lede')">
-          Ankore is a lean Worker module for products that need remembered users,
-          trusted devices, recoverable sessions, API keys, and entitlements without
-          forcing sign-up at the first useful moment.
-        </p>
+        <h6 :class="bemm('eyebrow')">{{ t('home.eyebrow') }}</h6>
+        <h1 :class="bemm('title')">{{ t('home.heroTitle') }}</h1>
+        <p :class="bemm('lede')">{{ t('home.lede') }}</p>
         <div :class="bemm('actions')">
-          <Button variant="primary" to="/docs/quickstart">Start with docs</Button>
-          <Button variant="outline" to="/architecture">See architecture</Button>
+          <Button variant="primary" to="/docs/quickstart">{{ t('home.actions.docs') }}</Button>
+          <Button variant="outline" to="/architecture">{{ t('home.actions.architecture') }}</Button>
         </div>
       </div>
 
-      <aside :class="bemm('hero-card')" aria-label="Identity continuity lifecycle">
+      <aside :class="bemm('hero-card')" :aria-label="t('home.heroCard.aria')">
         <div :class="bemm('hero-card-header')">
           <span :class="bemm('logo-shell')"><AnkoreLogo /></span>
           <div>
             <strong>Ankore</strong>
-            <span>small identity core</span>
+            <span>{{ t('home.heroCard.subtitle') }}</span>
           </div>
         </div>
         <ol :class="bemm('timeline')">
@@ -83,27 +77,19 @@ const productsUsingAnkore = [
 
     <section :class="[bemm('section'), bemm('intro')]" aria-labelledby="problem-title">
       <div :class="bemm('section-heading')">
-        <h6 :class="bemm('eyebrow')">Problem</h6>
-        <h2 id="problem-title">Most auth systems start with the heaviest question.</h2>
+        <h6 :class="bemm('eyebrow')">{{ t('home.problem.eyebrow') }}</h6>
+        <h2 id="problem-title">{{ t('home.problem.title') }}</h2>
       </div>
       <div :class="bemm('copy-stack')">
-        <p>
-          Products often need a stable identity before they need an account. A user may need
-          to save a draft, keep a device trusted, resume a flow, or recover a link long before
-          they care about passwords, billing, teams, or profiles.
-        </p>
-        <p>
-          Ankore separates continuity from account management. Begin with an anonymous subject,
-          then attach stronger proof, recovery, ownership, and paid capabilities when the
-          product experience actually asks for them.
-        </p>
+        <p>{{ t('home.problem.copy1') }}</p>
+        <p>{{ t('home.problem.copy2') }}</p>
       </div>
     </section>
 
     <section :class="[bemm('section'), bemm('modules')]" aria-labelledby="modules-title">
       <div :class="bemm('section-heading')">
-        <h6 :class="bemm('eyebrow')">Surface area</h6>
-        <h2 id="modules-title">Small pieces for the full identity lifecycle.</h2>
+        <h6 :class="bemm('eyebrow')">{{ t('home.modules.eyebrow') }}</h6>
+        <h2 id="modules-title">{{ t('home.modules.title') }}</h2>
       </div>
       <div :class="bemm('card-grid')">
         <article v-for="item in modules" :key="item.label" :class="bemm('card')">
@@ -116,13 +102,10 @@ const productsUsingAnkore = [
 
     <section :class="[bemm('section'), bemm('feature-band')]" aria-labelledby="flow-title">
       <div :class="bemm('band-copy')">
-        <h6 :class="bemm('eyebrow')">Flow</h6>
-        <h2 id="flow-title">The upgrade path stays explicit.</h2>
-        <p>
-          Start with useful anonymous state, then add proof only when the experience asks for it.
-          No auth rewrite. No hidden coupling to a heavyweight provider.
-        </p>
-        <Button variant="ghost" to="/why">Read why this exists</Button>
+        <h6 :class="bemm('eyebrow')">{{ t('home.flow.eyebrow') }}</h6>
+        <h2 id="flow-title">{{ t('home.flow.title') }}</h2>
+        <p>{{ t('home.flow.text') }}</p>
+        <Button variant="ghost" to="/why">{{ t('home.flow.action') }}</Button>
       </div>
       <div :class="bemm('principles')">
         <span v-for="principle in principles" :key="principle">{{ principle }}</span>
@@ -131,13 +114,10 @@ const productsUsingAnkore = [
 
     <section :class="[bemm('section'), bemm('quickstart')]" aria-labelledby="quickstart-title">
       <div :class="bemm('quickstart-copy')">
-        <h6 :class="bemm('eyebrow')">10-minute path</h6>
-        <h2 id="quickstart-title">Install, bind D1, deploy.</h2>
-        <p>
-          The package ships Worker handlers, client helpers, migrations, a typed contract test,
-          and example Workers so product teams can adopt it without building auth from zero.
-        </p>
-        <Button variant="outline" to="/docs/quickstart">Open quickstart</Button>
+        <h6 :class="bemm('eyebrow')">{{ t('home.quickstart.eyebrow') }}</h6>
+        <h2 id="quickstart-title">{{ t('home.quickstart.title') }}</h2>
+        <p>{{ t('home.quickstart.text') }}</p>
+        <Button variant="outline" to="/docs/quickstart">{{ t('home.quickstart.action') }}</Button>
       </div>
       <pre><code>npm install ankore
 
@@ -149,8 +129,8 @@ export default createIdentityWorker(config)</code></pre>
 
     <section :class="[bemm('section'), bemm('products')]" aria-labelledby="products-title">
       <div :class="bemm('section-heading')">
-        <h6 :class="bemm('eyebrow')">Used by</h6>
-        <h2 id="products-title">Products using Ankore.</h2>
+        <h6 :class="bemm('eyebrow')">{{ t('home.products.eyebrow') }}</h6>
+        <h2 id="products-title">{{ t('home.products.title') }}</h2>
       </div>
       <div :class="bemm('product-grid')">
         <article v-for="product in productsUsingAnkore" :key="product.name" :class="bemm('product')">

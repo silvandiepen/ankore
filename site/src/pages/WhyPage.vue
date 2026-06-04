@@ -1,41 +1,32 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { Button } from '@sil/ui'
 import { useBemm } from 'bemm'
+import { useI18n } from '../i18n'
+
+interface Reason {
+  readonly title: string
+  readonly text: string
+}
 
 const bemm = useBemm('ankore-page', { return: 'string' })
+const { t, i18n } = useI18n()
 
-const reasons = [
-  {
-    title: 'Continuity is not the same as account management',
-    text: 'A product often needs to remember a person or device before it needs a profile. Ankore keeps that first identity primitive small and portable.',
-  },
-  {
-    title: 'Recovery should be an upgrade, not a gate',
-    text: 'Email challenges, account links, and ownership proofs are added when a user wants durability. The first session can stay lightweight.',
-  },
-  {
-    title: 'Product state should survive auth changes',
-    text: 'Anonymous usage, recovered access, and account-backed access all point at the same subject instead of forcing data migration between auth modes.',
-  },
-  {
-    title: 'The boundary should be inspectable',
-    text: 'A small Worker + D1 module is easier to audit than a broad auth platform. The product decides which capabilities to enable.',
-  },
-] as const
+const reasons = computed(() => {
+  const value = i18n.raw('why.reasons')
+  return Array.isArray(value) ? (value as Reason[]) : []
+})
 </script>
 
 <template>
   <main :class="bemm()">
     <section :class="bemm('hero')">
-      <p :class="bemm('eyebrow')">Why Ankore</p>
-      <h1>Stop asking for accounts before value exists.</h1>
-      <p>
-        Ankore exists for products where “remember me” matters before “sign me up”. It gives
-        teams a stable subject model first, then lets stronger proof attach over time.
-      </p>
-      <Button variant="primary" to="/docs/why">Read the full rationale</Button>
+      <p :class="bemm('eyebrow')">{{ t('why.eyebrow') }}</p>
+      <h1>{{ t('why.title') }}</h1>
+      <p>{{ t('why.intro') }}</p>
+      <Button variant="primary" to="/docs/why">{{ t('why.action') }}</Button>
     </section>
-    <section :class="bemm('grid')" aria-label="Reasons">
+    <section :class="bemm('grid')" :aria-label="t('why.aria')">
       <article v-for="reason in reasons" :key="reason.title" :class="bemm('card')">
         <h2>{{ reason.title }}</h2>
         <p>{{ reason.text }}</p>

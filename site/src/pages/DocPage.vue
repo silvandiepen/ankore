@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 import { Markdown } from '@sil/ui'
 import { useBemm } from 'bemm'
 import { defaultDocsSlug, getDocsPage } from '../docs'
+import { useI18n } from '../i18n'
 
 const props = defineProps<{
   slug?: string
@@ -11,8 +12,10 @@ const props = defineProps<{
 
 const bemm = useBemm('ankore-doc-page', { return: 'string' })
 const route = useRoute()
+const { t, locale } = useI18n()
 
 const page = computed(() => {
+  locale.value
   const slug = props.slug ?? String(route.params.slug ?? defaultDocsSlug)
   return getDocsPage(slug) ?? getDocsPage(defaultDocsSlug)
 })
@@ -21,7 +24,7 @@ const page = computed(() => {
 <template>
   <article v-if="page" :class="bemm()">
     <header :class="bemm('header')">
-      <p :class="bemm('eyebrow')">Documentation</p>
+      <p :class="bemm('eyebrow')">{{ t('common.documentation') }}</p>
       <h1>{{ page.title }}</h1>
       <p>{{ page.description }}</p>
     </header>

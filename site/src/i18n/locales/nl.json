@@ -1,0 +1,271 @@
+{
+  "nav": {
+    "why": "Waarom",
+    "architecture": "Architectuur",
+    "integrations": "Integraties",
+    "docs": "Docs"
+  },
+  "header": {
+    "home": "Ankore home",
+    "language": "Taal",
+    "theme": "Kleurmodus",
+    "themes": {
+      "system": "Systeem",
+      "light": "Licht",
+      "dark": "Donker"
+    }
+  },
+  "common": {
+    "documentation": "Documentatie",
+    "backToOverview": "Terug naar overzicht",
+    "docsMenu": "Docs-menu"
+  },
+  "home": {
+    "eyebrow": "anchor + encore",
+    "heroTitle": "Identiteitscontinuïteit vóór accounts.",
+    "lede": "Ankore is een kleine Worker-module voor producten die onthouden gebruikers, vertrouwde apparaten, herstelbare sessies, API-sleutels en rechten nodig hebben zonder registratie af te dwingen op het eerste nuttige moment.",
+    "actions": {
+      "docs": "Start met docs",
+      "architecture": "Bekijk architectuur"
+    },
+    "heroCard": {
+      "aria": "Levenscyclus van identiteitscontinuïteit",
+      "subtitle": "kleine identity core"
+    },
+    "proof": [
+      {
+        "value": "0",
+        "label": "accountmuur vóór eerste gebruik"
+      },
+      {
+        "value": "1",
+        "label": "klein Worker-pakket"
+      },
+      {
+        "value": "D1",
+        "label": "draagbare identity store"
+      }
+    ],
+    "lifecycle": [
+      {
+        "label": "Anoniem subject",
+        "text": "Bewaar productstatus al vóór registratie."
+      },
+      {
+        "label": "Vertrouwd apparaat",
+        "text": "Onthoud browser of native app veilig."
+      },
+      {
+        "label": "Herstelbare sessie",
+        "text": "Geef scoped tokens uit en roteer ze netjes."
+      },
+      {
+        "label": "Optioneel account",
+        "text": "Koppel e-mail, billing, teams of API-sleutels later."
+      }
+    ],
+    "problem": {
+      "eyebrow": "Probleem",
+      "title": "De meeste auth-systemen beginnen met de zwaarste vraag.",
+      "copy1": "Producten hebben vaak een stabiele identiteit nodig voordat ze een account nodig hebben. Een gebruiker wil misschien een concept bewaren, een apparaat vertrouwd houden, een flow hervatten of een link herstellen lang voordat wachtwoorden, billing, teams of profielen relevant zijn.",
+      "copy2": "Ankore scheidt continuïteit van accountbeheer. Begin met een anoniem subject en voeg sterker bewijs, herstel, eigenaarschap en betaalde mogelijkheden toe wanneer de productervaring daar echt om vraagt."
+    },
+    "modules": {
+      "eyebrow": "Oppervlak",
+      "title": "Kleine onderdelen voor de volledige identiteitslevenscyclus.",
+      "items": [
+        {
+          "label": "Subjects",
+          "text": "Stabiele gebruikersachtige identiteit zonder login te vereisen."
+        },
+        {
+          "label": "Devices",
+          "text": "Bind browsers, apps en vertrouwde oppervlakken aan een subject."
+        },
+        {
+          "label": "Sessions",
+          "text": "Geef scoped tokens uit voor product-API's en Workers."
+        },
+        {
+          "label": "Recovery",
+          "text": "Voeg e-mailuitdagingen alleen toe wanneer de gebruiker toegang wil behouden."
+        },
+        {
+          "label": "API keys",
+          "text": "Maak servicecredentials voor integraties en automatisering."
+        },
+        {
+          "label": "Entitlements",
+          "text": "Koppel plan, gebruik en feature flags zonder identiteit te wijzigen."
+        }
+      ]
+    },
+    "flow": {
+      "eyebrow": "Flow",
+      "title": "Het upgradepad blijft expliciet.",
+      "text": "Start met nuttige anonieme status en voeg bewijs pas toe wanneer de ervaring daarom vraagt. Geen auth-rewrite. Geen verborgen koppeling aan een zware provider.",
+      "action": "Lees waarom dit bestaat",
+      "principles": [
+        "Standaard geen wachtwoorden",
+        "Geen accountcreatie als voordeur",
+        "Geen publieke user-enumeration",
+        "Alleen hashes voor tokens, codes en geheimen"
+      ]
+    },
+    "quickstart": {
+      "eyebrow": "10-minutenpad",
+      "title": "Installeer, bind D1, deploy.",
+      "text": "Het pakket levert Worker-handlers, clienthelpers, migraties, een typed contracttest en voorbeeld-Workers zodat teams het kunnen adopteren zonder auth vanaf nul te bouwen.",
+      "action": "Open quickstart"
+    },
+    "products": {
+      "eyebrow": "Gebruikt door",
+      "title": "Producten die Ankore gebruiken.",
+      "items": [
+        {
+          "name": "Tiko",
+          "mark": "Ti",
+          "description": "Device-first continuïteit voor kindgerichte ervaringen."
+        },
+        {
+          "name": "Mikki",
+          "mark": "Mi",
+          "description": "Anonymous-first continuïteit voor gerichte persoonlijke tools."
+        }
+      ]
+    }
+  },
+  "why": {
+    "eyebrow": "Waarom Ankore",
+    "title": "Vraag niet om accounts voordat waarde bestaat.",
+    "intro": "Ankore bestaat voor producten waar “onthoud mij” belangrijk is vóór “registreer mij”. Het geeft teams eerst een stabiel subjectmodel en laat sterker bewijs later aansluiten.",
+    "action": "Lees de volledige rationale",
+    "aria": "Redenen",
+    "reasons": [
+      {
+        "title": "Continuïteit is niet hetzelfde als accountbeheer",
+        "text": "Een product moet vaak een persoon of apparaat onthouden voordat het een profiel nodig heeft. Ankore houdt die eerste identiteit klein en draagbaar."
+      },
+      {
+        "title": "Herstel moet een upgrade zijn, geen poort",
+        "text": "E-mailuitdagingen, accountkoppelingen en eigendomsbewijzen worden toegevoegd wanneer een gebruiker duurzaamheid wil. De eerste sessie kan licht blijven."
+      },
+      {
+        "title": "Productstatus moet auth-wijzigingen overleven",
+        "text": "Anoniem gebruik, herstelde toegang en accountgedragen toegang wijzen allemaal naar hetzelfde subject in plaats van dat data tussen auth-modi moet migreren."
+      },
+      {
+        "title": "De grens moet inspecteerbaar zijn",
+        "text": "Een kleine Worker + D1-module is makkelijker te auditen dan een breed auth-platform. Het product kiest welke mogelijkheden aan gaan."
+      }
+    ]
+  },
+  "architecture": {
+    "eyebrow": "Architectuur",
+    "title": "Een kleine identity boundary tussen productcode en accountfeatures.",
+    "intro": "Ankore is bewust saai: één Worker-pakket, één databasebinding, typed clienthelpers en expliciete configuratie voor origins, geheimen, herstel en rollout.",
+    "action": "Bekijk de API",
+    "aria": "Architectuurlagen",
+    "layers": [
+      [
+        "Product-app",
+        "Roept Ankore clienthelpers aan, bewaart publieke subject/device-id's en bezit de productervaring."
+      ],
+      [
+        "Ankore Worker",
+        "Valideert requests, geeft sessies uit, verwerkt hersteluitdagingen en biedt de identity API."
+      ],
+      [
+        "D1 identity store",
+        "Bewaart subjects, devices, sessions, accounts, API keys, entitlements en audit trails."
+      ],
+      [
+        "Optionele providers",
+        "E-maillevering, billing, analytics en productspecifieke API's sluiten aan via expliciete configuratie."
+      ]
+    ]
+  },
+  "integrations": {
+    "eyebrow": "Integraties",
+    "title": "Adopteer de onderdelen die je product echt nodig heeft.",
+    "intro": "Ankore is geen vervanging voor elk accountsysteem. Het is de continuïteitskern waardoor productstatus anoniem, hersteld en accountgedragen gebruik overleeft.",
+    "action": "Open client-docs",
+    "aria": "Integratiepaden",
+    "paths": [
+      {
+        "title": "Browserproducten",
+        "items": [
+          "Maak of hervat een device identity",
+          "Houd drafts en lokale productdata gekoppeld",
+          "Upgrade naar herstel zonder records te verplaatsen"
+        ]
+      },
+      {
+        "title": "Worker API's",
+        "items": [
+          "Verifieer Ankore-sessies aan API-grenzen",
+          "Gebruik subject-id's als product owners",
+          "Koppel plan- en entitlementchecks"
+        ]
+      },
+      {
+        "title": "Servicetoegang",
+        "items": [
+          "Geef API-sleutels uit vanuit dezelfde identity core",
+          "Audit sleutelgebruik per subject",
+          "Trek credentials in zonder account-rewrites"
+        ]
+      },
+      {
+        "title": "Herstelflows",
+        "items": [
+          "Stuur challenge-mails via een ingestelde provider",
+          "Bind geverifieerde recovery handles",
+          "Herstel toegang tot het oorspronkelijke subject"
+        ]
+      }
+    ]
+  },
+  "docs": {
+    "why": {
+      "title": "Waarom Ankore",
+      "description": "Identiteitscontinuïteit, geen accountmuur."
+    },
+    "quickstart": {
+      "title": "Quickstart",
+      "description": "Installeer Ankore en start in minuten een Worker."
+    },
+    "config": {
+      "title": "Configuratie",
+      "description": "Vereiste bindings, geheimen, origins en rollout-instellingen."
+    },
+    "api": {
+      "title": "API",
+      "description": "HTTP-endpoints voor subjects, devices, sessions, accounts, keys en entitlements."
+    },
+    "client": {
+      "title": "Clientgebruik",
+      "description": "Browserintegratie voor anonymous-first apps."
+    },
+    "storage": {
+      "title": "Opslag",
+      "description": "D1-schema, migraties, retentie en operationele notities."
+    },
+    "security": {
+      "title": "Beveiliging",
+      "description": "Threat model, geheime afhandeling, CORS, challenges en audit trails."
+    },
+    "email": {
+      "title": "E-mail",
+      "description": "Challenge delivery, provider hooks en herstelflows."
+    },
+    "release": {
+      "title": "Release",
+      "description": "Versiebeheer, packaging, CI-checks en promotiestappen."
+    },
+    "troubleshooting": {
+      "title": "Troubleshooting",
+      "description": "Veelvoorkomende integratiefouten en verificatiecommando's."
+    }
+  }
+}

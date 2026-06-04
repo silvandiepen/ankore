@@ -1,29 +1,29 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { Button } from '@sil/ui'
 import { useBemm } from 'bemm'
+import { useI18n } from '../i18n'
+
+type Layer = readonly [string, string]
 
 const bemm = useBemm('ankore-page', { return: 'string' })
+const { t, i18n } = useI18n()
 
-const layers = [
-  ['Product app', 'Calls Ankore client helpers, stores public subject/device identifiers, and owns the product experience.'],
-  ['Ankore Worker', 'Validates requests, issues sessions, handles recovery challenges, and exposes the identity API.'],
-  ['D1 identity store', 'Keeps subjects, devices, sessions, accounts, API keys, entitlements, and audit trails.'],
-  ['Optional providers', 'Email delivery, billing, analytics, and product-specific APIs attach through explicit configuration.'],
-] as const
+const layers = computed(() => {
+  const value = i18n.raw('architecture.layers')
+  return Array.isArray(value) ? (value as Layer[]) : []
+})
 </script>
 
 <template>
   <main :class="bemm()">
     <section :class="bemm('hero')">
-      <p :class="bemm('eyebrow')">Architecture</p>
-      <h1>A small identity boundary between product code and account features.</h1>
-      <p>
-        Ankore is intentionally boring: one Worker package, one database binding, typed client
-        helpers, and explicit configuration for origins, secrets, recovery, and rollout.
-      </p>
-      <Button variant="primary" to="/docs/api">Explore the API</Button>
+      <p :class="bemm('eyebrow')">{{ t('architecture.eyebrow') }}</p>
+      <h1>{{ t('architecture.title') }}</h1>
+      <p>{{ t('architecture.intro') }}</p>
+      <Button variant="primary" to="/docs/api">{{ t('architecture.action') }}</Button>
     </section>
-    <section :class="bemm('grid')" aria-label="Architecture layers">
+    <section :class="bemm('grid')" :aria-label="t('architecture.aria')">
       <article v-for="layer in layers" :key="layer[0]" :class="bemm('card')">
         <h2>{{ layer[0] }}</h2>
         <p>{{ layer[1] }}</p>

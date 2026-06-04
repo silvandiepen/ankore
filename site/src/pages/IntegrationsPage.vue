@@ -1,41 +1,32 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { Button } from '@sil/ui'
 import { useBemm } from 'bemm'
+import { useI18n } from '../i18n'
+
+interface IntegrationPath {
+  readonly title: string
+  readonly items: readonly string[]
+}
 
 const bemm = useBemm('ankore-page', { return: 'string' })
+const { t, i18n } = useI18n()
 
-const paths = [
-  {
-    title: 'Browser products',
-    items: ['Create or resume a device identity', 'Keep drafts and local product data attached', 'Upgrade to recovery without moving records'],
-  },
-  {
-    title: 'Worker APIs',
-    items: ['Verify Ankore sessions at API boundaries', 'Use subject ids as product owners', 'Attach plan and entitlement checks'],
-  },
-  {
-    title: 'Service access',
-    items: ['Issue API keys from the same identity core', 'Audit key usage by subject', 'Revoke credentials without account rewrites'],
-  },
-  {
-    title: 'Recovery flows',
-    items: ['Send challenge emails from a configured provider', 'Bind verified recovery handles', 'Restore access to the original subject'],
-  },
-] as const
+const paths = computed(() => {
+  const value = i18n.raw('integrations.paths')
+  return Array.isArray(value) ? (value as IntegrationPath[]) : []
+})
 </script>
 
 <template>
   <main :class="bemm()">
     <section :class="bemm('hero')">
-      <p :class="bemm('eyebrow')">Integrations</p>
-      <h1>Adopt the parts your product actually needs.</h1>
-      <p>
-        Ankore is not a replacement for every account system. It is the continuity core that
-        lets product state survive across anonymous, recovered, and account-backed use.
-      </p>
-      <Button variant="primary" to="/docs/client">Open client docs</Button>
+      <p :class="bemm('eyebrow')">{{ t('integrations.eyebrow') }}</p>
+      <h1>{{ t('integrations.title') }}</h1>
+      <p>{{ t('integrations.intro') }}</p>
+      <Button variant="primary" to="/docs/client">{{ t('integrations.action') }}</Button>
     </section>
-    <section :class="bemm('grid')" aria-label="Integration paths">
+    <section :class="bemm('grid')" :aria-label="t('integrations.aria')">
       <article v-for="path in paths" :key="path.title" :class="bemm('card')">
         <h2>{{ path.title }}</h2>
         <ul>

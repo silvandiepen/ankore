@@ -11,7 +11,7 @@ npm run check
 npm publish --dry-run --access public
 ```
 
-Publishing runs through GitHub Actions using semantic-release and npm provenance. Every push to `main` analyzes conventional commits since the last `v*` tag, chooses the next semver version, publishes to npm, creates a GitHub release, updates `CHANGELOG.md`, and commits the release metadata back to `main` with `[skip ci]`.
+Publishing runs through GitHub Actions using semantic-release and npm provenance. Every push to `main` analyzes conventional commits since the last `v*` tag, chooses the next semver version, publishes to npm, creates a GitHub release, and creates release notes. The workflow does not commit generated version metadata back to `main`, so branch protection can require pull requests for all branch updates.
 
 ## Configuration required
 

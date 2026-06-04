@@ -32,6 +32,9 @@ export class D1IdentityStore implements IdentityStore {
   async getSubject(id: string): Promise<IdentitySubject | null> {
     return mapSubject(await this.db.prepare('SELECT * FROM identity_subjects WHERE id = ?').bind(id).first<Row>())
   }
+  async updateSubjectMetadata(subjectId: string, metadata: Record<string, unknown>, updatedAt: string): Promise<void> {
+    await this.db.prepare('UPDATE identity_subjects SET metadata_json = ?, updated_at = ? WHERE id = ?').bind(JSON.stringify(metadata), updatedAt, subjectId).run()
+  }
 
   async createDevice(device: IdentityDevice): Promise<void> {
     await this.db.prepare('INSERT INTO identity_devices (id, subject_id, product, secret_hash, label, user_agent_hash, created_at, last_seen_at, revoked_at, metadata_json) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')

@@ -100,31 +100,33 @@ const productsUsingAnkore = computed(() => translatedArray<ProductItem>('home.pr
       </div>
     </section>
 
-    <section :class="[bemm('section'), bemm('feature-band')]" aria-labelledby="flow-title">
-      <div :class="bemm('band-copy')">
-        <h6 :class="bemm('eyebrow')">{{ t('home.flow.eyebrow') }}</h6>
-        <h2 id="flow-title">{{ t('home.flow.title') }}</h2>
-        <p>{{ t('home.flow.text') }}</p>
-        <Button variant="ghost" to="/why">{{ t('home.flow.action') }}</Button>
-      </div>
-      <div :class="bemm('principles')">
-        <span v-for="principle in principles" :key="principle">{{ principle }}</span>
-      </div>
-    </section>
+    <section :class="[bemm('section'), bemm('pathways')]" aria-labelledby="flow-title">
+      <article :class="[bemm('pathway'), bemm('upgrade-panel')]">
+        <div :class="bemm('band-copy')">
+          <h6 :class="bemm('eyebrow')">{{ t('home.flow.eyebrow') }}</h6>
+          <h2 id="flow-title">{{ t('home.flow.title') }}</h2>
+          <p>{{ t('home.flow.text') }}</p>
+          <Button variant="ghost" to="/why">{{ t('home.flow.action') }}</Button>
+        </div>
+        <div :class="bemm('principles')">
+          <span v-for="principle in principles" :key="principle">{{ principle }}</span>
+        </div>
+      </article>
 
-    <section :class="[bemm('section'), bemm('quickstart')]" aria-labelledby="quickstart-title">
-      <div :class="bemm('quickstart-copy')">
-        <h6 :class="bemm('eyebrow')">{{ t('home.quickstart.eyebrow') }}</h6>
-        <h2 id="quickstart-title">{{ t('home.quickstart.title') }}</h2>
-        <p>{{ t('home.quickstart.text') }}</p>
-        <Button variant="outline" to="/docs/quickstart">{{ t('home.quickstart.action') }}</Button>
-      </div>
-      <pre><code>npm install ankore
+      <article :class="[bemm('pathway'), bemm('install-panel')]" aria-labelledby="quickstart-title">
+        <div :class="bemm('quickstart-copy')">
+          <h6 :class="bemm('eyebrow')">{{ t('home.quickstart.eyebrow') }}</h6>
+          <h2 id="quickstart-title">{{ t('home.quickstart.title') }}</h2>
+          <p>{{ t('home.quickstart.text') }}</p>
+          <Button variant="outline" to="/docs/quickstart">{{ t('home.quickstart.action') }}</Button>
+        </div>
+        <pre><code>npm install ankore
 
 import { createIdentityWorker } from 'ankore/worker'
 import config from './ankore.config.json'
 
 export default createIdentityWorker(config)</code></pre>
+      </article>
     </section>
 
     <section :class="[bemm('section'), bemm('products')]" aria-labelledby="products-title">
@@ -155,9 +157,13 @@ export default createIdentityWorker(config)</code></pre>
     content: '';
     position: absolute;
     inset: 0 0 auto;
-    height: 32rem;
+    height: 34rem;
     pointer-events: none;
-    background: color-mix(in srgb, var(--color-background), var(--color-foreground) 3%);
+    background:
+      radial-gradient(circle at 12% 18%, color-mix(in srgb, var(--color-primary), transparent 48%), transparent 24rem),
+      radial-gradient(circle at 76% 8%, color-mix(in srgb, var(--color-secondary), transparent 48%), transparent 22rem),
+      radial-gradient(circle at 52% 30%, color-mix(in srgb, var(--color-cyan), transparent 68%), transparent 26rem),
+      color-mix(in srgb, var(--color-background), var(--color-foreground) 2%);
     mask-image: linear-gradient(to bottom, black, transparent);
   }
 
@@ -195,14 +201,15 @@ export default createIdentityWorker(config)</code></pre>
   &__band-copy h2,
   &__quickstart-copy h2 {
     margin: 0;
-    letter-spacing: 0 !important;
-    line-height: 1.02;
+    letter-spacing: -.035em !important;
+    line-height: 1.06;
+    font-weight: 340;
   }
 
   &__title {
     max-width: 18ch;
-    font-size: clamp(3.2rem, 6vw, 7.25rem) !important;
-    font-weight: 100;
+    font-size: clamp(2.7rem, 5.2vw, 5.85rem) !important;
+    font-weight: 260;
   }
 
   &__lede {
@@ -223,8 +230,7 @@ export default createIdentityWorker(config)</code></pre>
   &__hero-card,
   &__metric,
   &__card,
-  &__feature-band,
-  &__quickstart,
+  &__pathway,
   &__product {
     border: 1px solid color-mix(in srgb, var(--color-foreground), transparent 90%);
     background: color-mix(in srgb, var(--color-background), var(--color-foreground) 3%);
@@ -238,7 +244,11 @@ export default createIdentityWorker(config)</code></pre>
     gap: var(--space-l);
     padding: var(--space-l);
     border-radius: 2rem;
-    background: color-mix(in srgb, var(--color-background), var(--color-foreground) 6%);
+    background:
+      radial-gradient(circle at 16% 0%, color-mix(in srgb, var(--color-primary), transparent 38%), transparent 14rem),
+      radial-gradient(circle at 100% 24%, color-mix(in srgb, var(--color-secondary), transparent 42%), transparent 13rem),
+      radial-gradient(circle at 64% 92%, color-mix(in srgb, var(--color-purple), transparent 58%), transparent 16rem),
+      color-mix(in srgb, var(--color-background), var(--color-foreground) 6%);
   }
 
   &__hero-card-header {
@@ -267,8 +277,8 @@ export default createIdentityWorker(config)</code></pre>
     width: 4rem;
     height: 4rem;
     border-radius: 1.35rem;
-    background: color-mix(in srgb, var(--color-background), var(--color-foreground) 8%);
-    color: color-mix(in srgb, var(--color-foreground), transparent 12%);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--color-primary), var(--color-background) 18%), color-mix(in srgb, var(--color-secondary), var(--color-background) 22%));
+    color: color-mix(in srgb, var(--color-foreground), transparent 8%);
 
     .ankore-logo {
       width: 2.15rem;
@@ -299,8 +309,8 @@ export default createIdentityWorker(config)</code></pre>
         width: .6rem;
         height: .6rem;
         border-radius: 999px;
-        background: color-mix(in srgb, var(--color-foreground), transparent 10%);
-        box-shadow: 0 0 0 .35rem color-mix(in srgb, var(--color-background), var(--color-foreground) 12%);
+        background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+        box-shadow: 0 0 0 .35rem color-mix(in srgb, var(--color-primary), transparent 72%);
       }
     }
 
@@ -351,8 +361,8 @@ export default createIdentityWorker(config)</code></pre>
 
     h2 {
       max-width: 14ch;
-      font-size: clamp(2rem, 5vw, 4.25rem);
-      font-weight: 820;
+      font-size: clamp(1.65rem, 3.8vw, 3.15rem);
+      font-weight: 360;
     }
   }
 
@@ -417,8 +427,13 @@ export default createIdentityWorker(config)</code></pre>
     }
   }
 
-  &__feature-band,
-  &__quickstart {
+  &__pathways {
+    display: grid;
+    gap: var(--space-l);
+    padding: var(--spacing);
+  }
+
+  &__pathway {
     display: grid;
     grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
     gap: var(--space-l);
@@ -426,8 +441,18 @@ export default createIdentityWorker(config)</code></pre>
     border-radius: 2rem;
   }
 
-  &__feature-band {
-    background: color-mix(in srgb, var(--color-background), var(--color-foreground) 4%);
+  &__upgrade-panel {
+    border: 1px solid color-mix(in srgb, var(--color-primary), transparent 70%);
+    background:
+      radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--color-primary), transparent 58%), transparent 18rem),
+      color-mix(in srgb, var(--color-background), var(--color-primary) 8%);
+  }
+
+  &__install-panel {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+    border: 1px solid color-mix(in srgb, var(--color-secondary), transparent 70%);
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--color-background), var(--color-secondary) 10%), color-mix(in srgb, var(--color-background), var(--color-foreground) 3%));
   }
 
   &__band-copy,
@@ -438,7 +463,7 @@ export default createIdentityWorker(config)</code></pre>
     }
 
     h2 {
-      font-size: clamp(1.9rem, 4vw, 3.6rem);
+      font-size: clamp(1.55rem, 3.2vw, 2.65rem);
     }
   }
 
@@ -458,10 +483,6 @@ export default createIdentityWorker(config)</code></pre>
       color: color-mix(in srgb, currentColor, transparent 14%);
       font-weight: 750;
     }
-  }
-
-  &__quickstart {
-    align-items: stretch;
   }
 
   pre {
@@ -517,8 +538,8 @@ export default createIdentityWorker(config)</code></pre>
 
   @media (max-width: 900px) {
     &__hero,
-    &__feature-band,
-    &__quickstart {
+    &__pathway,
+    &__install-panel {
       grid-template-columns: 1fr;
     }
 
@@ -540,8 +561,7 @@ export default createIdentityWorker(config)</code></pre>
       grid-template-columns: 1fr;
     }
 
-    &__feature-band,
-    &__quickstart,
+    &__pathway,
     &__hero-card,
     &__card,
     &__product {

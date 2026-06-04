@@ -76,10 +76,10 @@ const homePath = join(siteRoot, 'src/pages/HomePage.vue')
 if (existsSync(homePath)) {
   const home = readFileSync(homePath, 'utf8')
   if (!home.includes('useBemm(')) failures.push('HomePage must use bemm')
-  for (const marker of ["bemm('hero')", "bemm('proof')", "bemm('intro')", "bemm('modules')", "bemm('feature-band')", "bemm('quickstart')", "bemm('products')"]) {
+  for (const marker of ["bemm('hero')", "bemm('proof')", "bemm('intro')", "bemm('modules')", "bemm('pathways')", "bemm('products')"]) {
     if (!home.includes(marker)) failures.push(`HomePage missing section marker: ${marker}`)
   }
-  for (const marker of ["bemm('hero-card')", "bemm('card-grid')", "bemm('card')", "bemm('product-grid')"]) {
+  for (const marker of ["bemm('hero-card')", "bemm('card-grid')", "bemm('card')", "bemm('pathway')", "bemm('product-grid')"]) {
     if (!home.includes(marker)) failures.push(`HomePage missing card/grid marker: ${marker}`)
   }
   if (!home.includes('color-mix(in srgb, var(--color-background)')) failures.push('HomePage must use token-based color-mix surfaces')

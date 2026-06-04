@@ -1,271 +1,276 @@
 {
   "nav": {
-    "why": "Why",
-    "architecture": "Architecture",
-    "integrations": "Integrations",
-    "docs": "Docs"
+    "why": "Ինչո՞ւ",
+    "architecture": "Ճարտարապետություն",
+    "integrations": "Ինտեգրումներ",
+    "docs": "Փաստաթղթեր"
   },
   "header": {
-    "home": "Ankore home",
-    "language": "Language",
-    "theme": "Color mode",
+    "home": "Անկորե տուն",
+    "language": "Լեզու",
+    "theme": "Գունավոր ռեժիմ",
     "themes": {
-      "system": "System",
-      "light": "Light",
-      "dark": "Dark"
+      "system": "Համակարգ",
+      "light": "Լույս",
+      "dark": "Մութ"
     }
   },
   "common": {
-    "documentation": "Documentation",
-    "backToOverview": "Back to overview",
-    "docsMenu": "Docs menu"
+    "documentation": "Փաստաթղթեր",
+    "backToOverview": "Վերադառնալ ակնարկ",
+    "docsMenu": "Փաստաթղթերի ընտրացանկ"
   },
   "home": {
-    "eyebrow": "anchor + encore",
-    "heroTitle": "Identity continuity before accounts.",
-    "lede": "Ankore is a lean Worker module for products that need remembered users, trusted devices, recoverable sessions, API keys, and entitlements without forcing sign-up at the first useful moment.",
+    "eyebrow": "խարիսխ + բիս",
+    "heroTitle": "Ինքնության շարունակականությունը հաշիվներից առաջ:",
+    "lede": "Ankore-ն նիհար Worker մոդուլ է այն ապրանքների համար, որոնք կարիք ունեն հիշվող օգտատերերի, վստահելի սարքերի, վերականգնվող նիստերի, API ստեղների և իրավունքների՝ առանց առաջին օգտակար պահին գրանցման պարտադրման:",
     "actions": {
-      "docs": "Start with docs",
-      "architecture": "See architecture"
+      "docs": "Սկսեք փաստաթղթերից",
+      "architecture": "Տես ճարտարապետություն"
     },
     "heroCard": {
-      "aria": "Identity continuity lifecycle",
-      "subtitle": "small identity core"
+      "aria": "Ինքնության շարունակականության կյանքի ցիկլը",
+      "subtitle": "ինքնության փոքր միջուկ"
     },
     "proof": [
       {
         "value": "0",
-        "label": "account wall before first use"
+        "label": "հաշվի պատը առաջին օգտագործումից առաջ"
       },
       {
         "value": "1",
-        "label": "small Worker package"
+        "label": "Փոքր աշխատանքային փաթեթ"
       },
       {
         "value": "D1",
-        "label": "portable identity store"
+        "label": "շարժական ինքնության խանութ"
       }
     ],
     "lifecycle": [
       {
-        "label": "Anonymous subject",
-        "text": "Start saving product state before sign-up."
+        "label": "Անանուն առարկա",
+        "text": "Սկսեք պահպանել արտադրանքի վիճակը նախքան գրանցվելը:"
       },
       {
-        "label": "Trusted device",
-        "text": "Remember the browser or native app safely."
+        "label": "Վստահելի սարք",
+        "text": "Անվտանգ հիշեք զննարկիչը կամ հայրենի հավելվածը:"
       },
       {
-        "label": "Recoverable session",
-        "text": "Issue scoped tokens and rotate them cleanly."
+        "label": "Վերականգնվող նստաշրջան",
+        "text": "Թողարկեք շրջանակով ժետոններ և մաքուր պտտեք դրանք:"
       },
       {
-        "label": "Optional account",
-        "text": "Attach email, billing, teams, or API keys later."
+        "label": "Ընտրովի հաշիվ",
+        "text": "Ավելի ուշ կցեք էլփոստի, վճարումների, թիմերի կամ API ստեղները:"
       }
     ],
     "problem": {
-      "eyebrow": "Problem",
-      "title": "Most auth systems start with the heaviest question.",
-      "copy1": "Products often need a stable identity before they need an account. A user may need to save a draft, keep a device trusted, resume a flow, or recover a link long before they care about passwords, billing, teams, or profiles.",
-      "copy2": "Ankore separates continuity from account management. Begin with an anonymous subject, then attach stronger proof, recovery, ownership, and paid capabilities when the product experience actually asks for them."
+      "eyebrow": "Խնդիր",
+      "title": "Հաստատման համակարգերից շատերը սկսում են ամենածանր հարցից:",
+      "copy1": "Ապրանքներին հաճախ անհրաժեշտ է կայուն ինքնություն, նախքան նրանց հաշիվը: Օգտատիրոջը կարող է անհրաժեշտ լինել պահպանել սևագիրը, վստահելի սարքը պահել, վերսկսել հոսքը կամ վերականգնել հղումը շատ ավելի շուտ, քան նրանք հոգ են տանում գաղտնաբառերի, վճարումների, թիմերի կամ պրոֆիլների մասին:",
+      "copy2": "Ankore-ն առանձնացնում է շարունակականությունը հաշվի կառավարումից: Սկսեք անանուն առարկայից, այնուհետև կցեք ավելի ուժեղ ապացույցներ, վերականգնում, սեփականություն և վճարովի հնարավորություններ, երբ ապրանքի փորձը իրականում պահանջում է դրանք:"
     },
     "modules": {
-      "eyebrow": "Surface area",
-      "title": "Small pieces for the full identity lifecycle.",
+      "eyebrow": "Մակերեսի մակերեսը",
+      "title": "Փոքր կտորներ ամբողջական ինքնության կյանքի ցիկլի համար:",
       "items": [
         {
-          "label": "Subjects",
-          "text": "Stable user-like identity without requiring a login."
+          "label": "Առարկաներ",
+          "text": "Օգտատիրոջ նման կայուն ինքնություն՝ առանց մուտք գործելու պահանջի:"
         },
         {
-          "label": "Devices",
-          "text": "Bind browsers, apps, and trusted surfaces to a subject."
+          "label": "Սարքեր",
+          "text": "Բրաուզերները, հավելվածները և վստահելի մակերեսները կապեք թեմային:"
         },
         {
-          "label": "Sessions",
-          "text": "Issue scoped tokens for product APIs and workers."
+          "label": "Նիստեր",
+          "text": "Թողարկեք շրջանակային նշաններ արտադրանքի API-ների և աշխատողների համար:"
         },
         {
-          "label": "Recovery",
-          "text": "Add email challenges only when the user asks to keep access."
+          "label": "Վերականգնում",
+          "text": "Էլփոստի մարտահրավերներ ավելացրեք միայն այն դեպքում, երբ օգտատերը խնդրում է պահպանել մուտքը:"
         },
         {
-          "label": "API keys",
-          "text": "Create service credentials for integrations and automations."
+          "label": "API ստեղներ",
+          "text": "Ստեղծեք ծառայության հավատարմագրեր ինտեգրման և ավտոմատացման համար:"
         },
         {
-          "label": "Entitlements",
-          "text": "Attach plan, usage, and feature flags without changing identity."
+          "label": "Իրավունքներ",
+          "text": "Կցեք պլանի, օգտագործման և հատկանիշի դրոշակներ՝ առանց ինքնությունը փոխելու:"
         }
       ]
     },
     "flow": {
-      "eyebrow": "Flow",
-      "title": "The upgrade path stays explicit.",
-      "text": "Start with useful anonymous state, then add proof only when the experience asks for it. No auth rewrite. No hidden coupling to a heavyweight provider.",
-      "action": "Read why this exists",
+      "eyebrow": "Հոսք",
+      "title": "Թարմացման ուղին մնում է հստակ:",
+      "text": "Սկսեք օգտակար անանուն վիճակից, ապա ավելացրեք ապացույց միայն այն ժամանակ, երբ փորձը դա պահանջում է: Ոչ մի հեղինակային վերագրում: No hidden coupling to a heavyweight provider.",
+      "action": "Կարդացեք, թե ինչու է դա գոյություն ունենում",
       "principles": [
-        "No passwords by default",
-        "No account creation front door",
-        "No public user enumeration",
-        "Only hashes for tokens, codes, and secrets"
+        "Լռելյայն գաղտնաբառեր չկան",
+        "Հաշվի ստեղծման մուտքի դուռ չկա",
+        "Օգտագործողների հանրային թվարկում չկա",
+        "Միայն հեշեր նշանների, կոդերի և գաղտնիքների համար"
       ]
     },
     "quickstart": {
-      "eyebrow": "10-minute path",
-      "title": "Install, bind D1, deploy.",
-      "text": "The package ships Worker handlers, client helpers, migrations, a typed contract test, and example Workers so product teams can adopt it without building auth from zero.",
-      "action": "Open quickstart"
+      "eyebrow": "10 րոպե ուղի",
+      "title": "Տեղադրեք, կապեք D1-ը, տեղակայեք:",
+      "text": "Փաթեթը առաքում է Աշխատողներին, հաճախորդների օգնականներին, միգրացիաներին, տպագրված պայմանագրային թեստին և աշխատողների օրինակին, որպեսզի արտադրանքի թիմերը կարողանան ընդունել այն՝ առանց զրոյից հաստատման հաստատման:",
+      "action": "Բացեք արագ մեկնարկը"
     },
     "products": {
-      "eyebrow": "Used by",
-      "title": "Products using Ankore.",
+      "eyebrow": "Օգտագործված է",
+      "title": "Ապրանքներ, օգտագործելով Ankore.",
       "items": [
         {
           "name": "Tiko",
           "mark": "Ti",
-          "description": "Device-first continuity for child-facing experiences."
+          "description": "Սարքի առաջին շարունակականությունը երեխայի հետ առնչվող փորձառությունների համար:"
         },
         {
           "name": "Mikki",
           "mark": "Mi",
-          "description": "Anonymous-first continuity for focused personal tools."
+          "description": "Անանուն-առաջին շարունակականություն կենտրոնացված անձնական գործիքների համար:"
         }
       ]
     }
   },
   "why": {
-    "eyebrow": "Why Ankore",
-    "title": "Stop asking for accounts before value exists.",
-    "intro": "Ankore exists for products where “remember me” matters before “sign me up”. It gives teams a stable subject model first, then lets stronger proof attach over time.",
-    "action": "Read the full rationale",
-    "aria": "Reasons",
+    "eyebrow": "Ինչու Անկորե",
+    "title": "Դադարեցրեք հաշիվներ խնդրելը, քանի դեռ արժեքը գոյություն չունի:",
+    "intro": "Ankore-ն գոյություն ունի այն ապրանքների համար, որտեղ «հիշիր ինձ» կարևոր է նախքան «գրանցել ինձ»: Այն թիմերին նախ տալիս է առարկայի կայուն մոդել, այնուհետև ժամանակի ընթացքում թույլ է տալիս ամրացնել ավելի ուժեղ ապացույցներ:",
+    "action": "Կարդացեք հիմնավորումն ամբողջությամբ",
+    "aria": "Պատճառները",
     "reasons": [
       {
-        "title": "Continuity is not the same as account management",
-        "text": "A product often needs to remember a person or device before it needs a profile. Ankore keeps that first identity primitive small and portable."
+        "title": "Շարունակականությունը նույնը չէ, ինչ հաշվի կառավարումը",
+        "text": "Արտադրանքը հաճախ պետք է հիշի մարդուն կամ սարքին, նախքան պրոֆիլի կարիքը: Ankore-ն պահպանում է այդ առաջին ինքնությունը պարզունակ փոքր և շարժական:"
       },
       {
-        "title": "Recovery should be an upgrade, not a gate",
-        "text": "Email challenges, account links, and ownership proofs are added when a user wants durability. The first session can stay lightweight."
+        "title": "Վերականգնումը պետք է լինի արդիականացում, ոչ թե դարպաս",
+        "text": "Էլփոստի մարտահրավերները, հաշվի հղումները և սեփականության ապացույցները ավելացվում են, երբ օգտագործողը երկարակեցություն է ցանկանում: The first session can stay lightweight."
       },
       {
-        "title": "Product state should survive auth changes",
-        "text": "Anonymous usage, recovered access, and account-backed access all point at the same subject instead of forcing data migration between auth modes."
+        "title": "Արտադրանքի վիճակը պետք է պահպանի վավերականության փոփոխությունները",
+        "text": "Անանուն օգտագործումը, վերականգնված մուտքը և հաշվի միջոցով ապահովված մուտքը բոլորը նույն թեմայի վրա են, այլ ոչ թե ստիպեն տվյալների տեղափոխումը վավերացման ռեժիմների միջև:"
       },
       {
-        "title": "The boundary should be inspectable",
-        "text": "A small Worker + D1 module is easier to audit than a broad auth platform. The product decides which capabilities to enable."
+        "title": "Սահմանը պետք է ստուգելի լինի",
+        "text": "Փոքր Worker + D1 մոդուլն ավելի հեշտ է աուդիտի ենթարկել, քան լայն auth հարթակը: Արտադրանքն է որոշում, թե որ հնարավորությունները միացնել:"
       }
     ]
   },
   "architecture": {
-    "eyebrow": "Architecture",
-    "title": "A small identity boundary between product code and account features.",
-    "intro": "Ankore is intentionally boring: one Worker package, one database binding, typed client helpers, and explicit configuration for origins, secrets, recovery, and rollout.",
-    "action": "Explore the API",
-    "aria": "Architecture layers",
+    "eyebrow": "Ճարտարապետություն",
+    "title": "Ապրանքի կոդի և հաշվի առանձնահատկությունների միջև ինքնության փոքր սահման:",
+    "intro": "Ankore-ը միտումնավոր ձանձրալի է. մեկ Worker փաթեթ, մեկ տվյալների բազայի պարտադիր կապ, մուտքագրված հաճախորդների օգնականներ և բացահայտ կոնֆիգուրացիա սկզբնաղբյուրների, գաղտնիքների, վերականգնման և տարածման համար:",
+    "action": "Ուսումնասիրեք API-ն",
+    "aria": "Ճարտարապետական ​​շերտեր",
     "layers": [
       [
         "Product app",
-        "Calls Ankore client helpers, stores public subject/device identifiers, and owns the product experience."
+        "Զանգում է Ankore-ի հաճախորդների օգնականներին, պահում է հանրային առարկայի/սարքի նույնացուցիչները և պատկանում է արտադրանքի փորձին:"
       ],
       [
         "Ankore Worker",
-        "Validates requests, issues sessions, handles recovery challenges, and exposes the identity API."
+        "Վավերացնում է հարցումները, թողարկում նիստեր, լուծում է վերականգնման մարտահրավերները և բացահայտում ինքնության API-ն:"
       ],
       [
         "D1 identity store",
-        "Keeps subjects, devices, sessions, accounts, API keys, entitlements, and audit trails."
+        "Պահպանում է առարկաները, սարքերը, նիստերը, հաշիվները, API ստեղները, իրավունքները և աուդիտի հետքերը:"
       ],
       [
-        "Optional providers",
-        "Email delivery, billing, analytics, and product-specific APIs attach through explicit configuration."
+        "Ընտրովի մատակարարներ",
+        "Էլեկտրոնային փոստի առաքում, վճարում, վերլուծություն և արտադրանքի հատուկ API-ները կցվում են հստակ կազմաձևման միջոցով:"
       ]
     ]
   },
   "integrations": {
-    "eyebrow": "Integrations",
-    "title": "Adopt the parts your product actually needs.",
-    "intro": "Ankore is not a replacement for every account system. It is the continuity core that lets product state survive across anonymous, recovered, and account-backed use.",
-    "action": "Open client docs",
-    "aria": "Integration paths",
+    "eyebrow": "Ինտեգրումներ",
+    "title": "Ընդունեք այն մասերը, որոնց իրականում անհրաժեշտ է ձեր արտադրանքը:",
+    "intro": "Ankore-ն յուրաքանչյուր հաշվի համակարգի փոխարինում չէ: Դա շարունակականության միջուկն է, որը թույլ է տալիս արտադրանքի վիճակը գոյատևել անանուն, վերականգնված և հաշվի միջոցով ապահովված օգտագործման ընթացքում:",
+    "action": "Բացեք հաճախորդի փաստաթղթերը",
+    "aria": "Ինտեգրման ուղիներ",
     "paths": [
       {
-        "title": "Browser products",
+        "title": "Բրաուզերի արտադրանք",
         "items": [
-          "Create or resume a device identity",
-          "Keep drafts and local product data attached",
-          "Upgrade to recovery without moving records"
+          "Ստեղծեք կամ վերսկսեք սարքի ինքնությունը",
+          "Կից պահեք նախագծերը և տեղական արտադրանքի տվյալները",
+          "Անցեք վերականգնման՝ առանց գրառումների տեղափոխման"
         ]
       },
       {
-        "title": "Worker APIs",
+        "title": "Worker API-ներ",
         "items": [
-          "Verify Ankore sessions at API boundaries",
-          "Use subject ids as product owners",
-          "Attach plan and entitlement checks"
+          "Ստուգեք Ankore նիստերը API-ի սահմաններում",
+          "Օգտագործեք առարկայի նույնականացումները որպես ապրանքի սեփականատեր",
+          "Կցեք պլանի և իրավունքի ստուգումները"
         ]
       },
       {
-        "title": "Service access",
+        "title": "Ծառայությունների հասանելիություն",
         "items": [
-          "Issue API keys from the same identity core",
-          "Audit key usage by subject",
-          "Revoke credentials without account rewrites"
+          "Թողարկեք API ստեղները նույն նույնական միջուկից",
+          "Աուդիտ բանալիների օգտագործումը ըստ առարկայի",
+          "Չեղյալ համարել հավատարմագրերը առանց հաշվի վերագրանցման"
         ]
       },
       {
-        "title": "Recovery flows",
+        "title": "Վերականգնման հոսքեր",
         "items": [
-          "Send challenge emails from a configured provider",
-          "Bind verified recovery handles",
-          "Restore access to the original subject"
+          "Ուղարկեք մարտահրավեր նամակներ կազմաձևված մատակարարից",
+          "Կապեք հաստատված վերականգնման բռնակները",
+          "Վերականգնել մուտքը դեպի սկզբնական թեմա"
         ]
       }
     ]
   },
   "docs": {
     "why": {
-      "title": "Why Ankore",
-      "description": "Identity continuity, not an account wall."
+      "title": "Ինչու Անկորե",
+      "description": "Ինքնության շարունակականություն, ոչ թե հաշվի պատ:"
     },
     "quickstart": {
-      "title": "Quickstart",
-      "description": "Install Ankore and boot a Worker in minutes."
+      "title": "Արագ մեկնարկ",
+      "description": "Տեղադրեք Ankore-ն և միացրեք Worker-ը րոպեների ընթացքում:"
     },
     "config": {
-      "title": "Configuration",
-      "description": "Required bindings, secrets, origins, and rollout settings."
+      "title": "Կոնֆիգուրացիա",
+      "description": "Պահանջվող կապեր, գաղտնիքներ, ծագում և տեղադրման կարգավորումներ:"
     },
     "api": {
       "title": "API",
-      "description": "HTTP endpoints for subjects, devices, sessions, accounts, keys, and entitlements."
+      "description": "HTTP վերջնակետեր առարկաների, սարքերի, նիստերի, հաշիվների, բանալիների և իրավունքների համար:"
     },
     "client": {
-      "title": "Client usage",
-      "description": "Browser integration for anonymous-first apps."
+      "title": "Հաճախորդի օգտագործումը",
+      "description": "Բրաուզերի ինտեգրում անանուն հավելվածների համար:"
     },
     "storage": {
-      "title": "Storage",
-      "description": "D1 schema, migrations, retention, and operational notes."
+      "title": "Պահպանում",
+      "description": "D1 սխեման, միգրացիաներ, պահպանում և գործառնական նշումներ:"
     },
     "security": {
-      "title": "Security",
-      "description": "Threat model, secret handling, CORS, challenges, and audit trails."
+      "title": "Անվտանգություն",
+      "description": "Սպառնալիքների մոդել, գաղտնի կառավարում, CORS, մարտահրավերներ և աուդիտի հետքեր:"
     },
     "email": {
-      "title": "Email",
-      "description": "Challenge delivery, provider hooks, and recovery flows."
+      "title": "Էլ",
+      "description": "Մարտահրավերների առաքում, մատակարարի կեռիկներ և վերականգնման հոսքեր:"
     },
     "release": {
-      "title": "Release",
-      "description": "Versioning, packaging, CI checks, and promotion steps."
+      "title": "Ազատ արձակել",
+      "description": "Տարբերակում, փաթեթավորում, CI ստուգումներ և առաջխաղացման քայլեր:"
     },
     "troubleshooting": {
-      "title": "Troubleshooting",
-      "description": "Common integration failures and verification commands."
+      "title": "Անսարքությունների վերացում",
+      "description": "Ընդհանուր ինտեգրման ձախողումներ և ստուգման հրամաններ:"
     }
+  },
+  "footer": {
+    "tagline": "Ինքնության շարունակականության փոքր առանցք արտադրանքների համար, որոնք պետք է հիշեն մարդկանց նախքան նրանք հաշիվներ խնդրելը:",
+    "navigation": "Ստորին նավարկություն",
+    "meta": "Խարիսխ նախ. Հաշիվ ավելի ուշ: Ստեղծված է Cloudflare աշխատողների և D1-ի համար:"
   }
 }

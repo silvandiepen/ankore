@@ -31,7 +31,7 @@ const actions = computed(() => [
   {
     label: locale.value.toUpperCase(),
     icon: 'ui/globe',
-    items: localeOptions.map((option) => ({
+    items: localeOptions.value.map((option) => ({
       label: option.nativeName,
       handler: () => void setAnkoreLocale(option.value),
     })),
@@ -65,4 +65,20 @@ const actions = computed(() => [
   </PillHeader>
 
   <RouterView />
+
+  <footer class="ankore-footer">
+    <div class="ankore-footer__inner">
+      <div class="ankore-footer__brand">
+        <span class="ankore-footer__mark" aria-hidden="true"><AnkoreLogo /></span>
+        <div>
+          <strong>Ankore</strong>
+          <p>{{ t('footer.tagline') }}</p>
+        </div>
+      </div>
+      <nav class="ankore-footer__nav" :aria-label="t('footer.navigation')">
+        <RouterLink v-for="item in navItems" :key="item.to" :to="item.to">{{ item.label }}</RouterLink>
+      </nav>
+      <p class="ankore-footer__meta">{{ t('footer.meta') }}</p>
+    </div>
+  </footer>
 </template>

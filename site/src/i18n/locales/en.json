@@ -267,5 +267,10 @@
       "title": "Troubleshooting",
       "description": "Common integration failures and verification commands."
     }
+  },
+  "footer": {
+    "tagline": "A small identity continuity core for products that should remember people before they ask for accounts.",
+    "navigation": "Footer navigation",
+    "meta": "Anchor first. Account later. Built for Cloudflare Workers and D1."
   }
 }

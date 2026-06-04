@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { PillHeader } from '@sil/ui'
+import { Icon, PillHeader } from '@sil/ui'
 import AnkoreLogo from './components/AnkoreLogo.vue'
 import { localeOptions, setAnkoreLocale, useI18n } from './i18n'
 import { type ColorMode, useColorMode } from './composables/useColorMode'
@@ -78,7 +78,13 @@ const actions = computed(() => [
       <nav class="ankore-footer__nav" :aria-label="t('footer.navigation')">
         <RouterLink v-for="item in navItems" :key="item.to" :to="item.to">{{ item.label }}</RouterLink>
       </nav>
-      <p class="ankore-footer__meta">{{ t('footer.meta') }}</p>
+      <p class="ankore-footer__meta">
+        <span>{{ t('footer.meta') }}</span>
+        <a href="https://hakobs.com" target="_blank" rel="noreferrer">
+          <Icon name="ui/building-house" size="small" aria-hidden="true" />
+          {{ t('footer.hakobsProduct') }}
+        </a>
+      </p>
     </div>
   </footer>
 </template>

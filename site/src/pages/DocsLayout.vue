@@ -52,9 +52,9 @@ function closeSidebar(): void {
   display: grid;
   grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
   gap: var(--space-xl);
-  width: min(1180px, calc(100% - 2rem));
+  width: min(1400px, 100%);
   margin: 0 auto;
-  padding: calc(var(--space) * 7) 0 var(--spacing);
+  padding: calc(var(--space) * 5.5) 0 0;
 
   &__sidebar {
     align-self: start;
@@ -94,7 +94,9 @@ function closeSidebar(): void {
   }
 
   &__content {
+    box-sizing: border-box;
     min-width: 0;
+    padding: var(--spacing);
   }
 
   &__toggle {

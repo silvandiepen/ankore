@@ -271,6 +271,7 @@
   "footer": {
     "tagline": "A small identity continuity core for products that should remember people before they ask for accounts.",
     "navigation": "Footer navigation",
-    "meta": "Anchor first. Account later. Built for Cloudflare Workers and D1."
+    "meta": "Anchor first. Account later. Built for Cloudflare Workers and D1.",
+    "hakobsProduct": "A Hakobs product."
   }
 }

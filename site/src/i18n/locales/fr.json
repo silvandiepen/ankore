@@ -271,6 +271,7 @@
   "footer": {
     "tagline": "Un petit noyau de continuité d'identité pour les produits qui doivent se souvenir des personnes avant qu'elles ne demandent des comptes.",
     "navigation": "Navigation en pied de page",
-    "meta": "Ancrez d’abord. Compte plus tard. Conçu pour Cloudflare Workers et D1."
+    "meta": "Ancrez d’abord. Compte plus tard. Conçu pour Cloudflare Workers et D1.",
+    "hakobsProduct": "Un produit Hakobs."
   }
 }

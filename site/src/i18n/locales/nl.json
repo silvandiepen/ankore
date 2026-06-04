@@ -271,6 +271,7 @@
   "footer": {
     "tagline": "Een kleine kern voor identiteitscontinuïteit voor producten die mensen moeten onthouden voordat ze om accounts vragen.",
     "navigation": "Voettekstnavigatie",
-    "meta": "Anker eerst. Rekening later. Gebouwd voor Cloudflare Workers en D1."
+    "meta": "Anker eerst. Rekening later. Gebouwd voor Cloudflare Workers en D1.",
+    "hakobsProduct": "Een Hakobs-product."
   }
 }

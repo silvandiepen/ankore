@@ -34,7 +34,7 @@ const page = computed(() => {
 
 <style lang="scss">
 .ankore-doc-page {
-  max-width: 780px;
+  max-width: 920px;
 
   &__header {
     margin-bottom: var(--space-xl);
@@ -84,7 +84,7 @@ const page = computed(() => {
     }
 
     a:not(.button) {
-      color: var(--color-primary);
+      color: color-mix(in srgb, var(--color-foreground), transparent 8%);
     }
   }
 }

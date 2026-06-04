@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Button } from '@sil/ui'
+import { Button, Icon } from '@sil/ui'
 import { useBemm } from 'bemm'
 import { useI18n } from '../i18n'
 
@@ -10,9 +10,11 @@ interface IntegrationPath {
 }
 
 const bemm = useBemm('ankore-page', { return: 'string' })
-const { t, i18n } = useI18n()
+const { t, i18n, locale } = useI18n()
+const cardIcons = ['misc/fingerprint', 'misc/key', 'ui/link', 'misc/shield-check']
 
 const paths = computed(() => {
+  locale.value
   const value = i18n.raw('integrations.paths')
   return Array.isArray(value) ? (value as IntegrationPath[]) : []
 })
@@ -27,7 +29,8 @@ const paths = computed(() => {
       <Button variant="primary" to="/docs/client">{{ t('integrations.action') }}</Button>
     </section>
     <section :class="bemm('grid')" :aria-label="t('integrations.aria')">
-      <article v-for="path in paths" :key="path.title" :class="bemm('card')">
+      <article v-for="(path, index) in paths" :key="path.title" :class="bemm('card')">
+        <span :class="bemm('card-icon')" aria-hidden="true"><Icon :name="cardIcons[index % cardIcons.length]" size="medium" /></span>
         <h2>{{ path.title }}</h2>
         <ul>
           <li v-for="item in path.items" :key="item">{{ item }}</li>
@@ -39,9 +42,15 @@ const paths = computed(() => {
 
 <style lang="scss">
 .ankore-page {
-  width: min(1120px, calc(100% - 2rem));
+  width: min(1400px, 100%);
   margin: 0 auto;
-  padding: calc(var(--space) * 8) 0 var(--spacing);
+  padding: calc(var(--space) * 5.5) 0 0;
+
+  &__hero,
+  &__grid {
+    box-sizing: border-box;
+    padding: var(--spacing);
+  }
 
   &__hero {
     display: grid;
@@ -79,13 +88,14 @@ const paths = computed(() => {
   }
 
   &__card {
+    position: relative;
     padding: var(--space-l);
     border: 1px solid color-mix(in srgb, var(--color-foreground), transparent 88%);
     border-radius: 2rem;
     background: color-mix(in srgb, var(--color-background), var(--color-foreground) 4%);
 
     h2, h3 {
-      margin-top: 0;
+      margin-top: calc(var(--space-l) * 1.6);
       letter-spacing: 0;
     }
 
@@ -93,6 +103,19 @@ const paths = computed(() => {
       color: color-mix(in srgb, currentColor, transparent 24%);
       line-height: 1.65;
     }
+  }
+
+  &__card-icon {
+    position: absolute;
+    top: var(--space-l);
+    left: var(--space-l);
+    display: grid;
+    place-items: center;
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: .85rem;
+    background: color-mix(in srgb, var(--color-background), var(--color-foreground) 7%);
+    color: color-mix(in srgb, var(--color-foreground), transparent 12%);
   }
 }
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Button } from '@sil/ui'
+import { Button, Icon } from '@sil/ui'
 import { useBemm } from 'bemm'
 import { useI18n } from '../i18n'
 import AnkoreLogo from '../components/AnkoreLogo.vue'
@@ -22,11 +22,12 @@ interface ProductItem {
 }
 
 const bemm = useBemm('ankore-home', { return: 'string' })
-const { t, i18n } = useI18n()
+const { t, i18n, locale } = useI18n()
 
 // Site check content markers: Identity continuity before accounts; Most auth systems start with the heaviest question; Small pieces for the full identity lifecycle; The upgrade path stays explicit.
 
 function translatedArray<T>(key: string): T[] {
+  locale.value
   const value = i18n.raw(key)
   return Array.isArray(value) ? (value as T[]) : []
 }
@@ -36,6 +37,8 @@ const lifecycle = computed(() => translatedArray<TextItem>('home.lifecycle'))
 const modules = computed(() => translatedArray<TextItem>('home.modules.items'))
 const principles = computed(() => translatedArray<string>('home.flow.principles'))
 const productsUsingAnkore = computed(() => translatedArray<ProductItem>('home.products.items'))
+const moduleIcons = ['misc/fingerprint', 'misc/key', 'ui/link', 'misc/shield-check']
+const productIcons = ['ui/button-user', 'ui/file-text', 'ui/layers-2', 'ui/globe']
 </script>
 
 <template>
@@ -92,8 +95,10 @@ const productsUsingAnkore = computed(() => translatedArray<ProductItem>('home.pr
         <h2 id="modules-title">{{ t('home.modules.title') }}</h2>
       </div>
       <div :class="bemm('card-grid')">
-        <article v-for="item in modules" :key="item.label" :class="bemm('card')">
-          <span :class="bemm('card-dot')" aria-hidden="true" />
+        <article v-for="(item, index) in modules" :key="item.label" :class="bemm('card')">
+          <span :class="bemm('card-icon')" aria-hidden="true">
+            <Icon :name="moduleIcons[index % moduleIcons.length]" size="medium" />
+          </span>
           <h3>{{ item.label }}</h3>
           <p>{{ item.text }}</p>
         </article>
@@ -135,8 +140,8 @@ export default createIdentityWorker(config)</code></pre>
         <h2 id="products-title">{{ t('home.products.title') }}</h2>
       </div>
       <div :class="bemm('product-grid')">
-        <article v-for="product in productsUsingAnkore" :key="product.name" :class="bemm('product')">
-          <div :class="bemm('product-logo')" aria-hidden="true">{{ product.mark }}</div>
+        <article v-for="(product, index) in productsUsingAnkore" :key="product.name" :class="bemm('product')">
+          <div :class="bemm('product-logo')" aria-hidden="true"><Icon :name="productIcons[index % productIcons.length]" size="medium" /></div>
           <div>
             <h3>{{ product.name }}</h3>
             <p>{{ product.description }}</p>
@@ -159,18 +164,13 @@ export default createIdentityWorker(config)</code></pre>
     inset: 0 0 auto;
     height: 34rem;
     pointer-events: none;
-    background:
-      radial-gradient(circle at 12% 18%, color-mix(in srgb, var(--color-primary), transparent 48%), transparent 24rem),
-      radial-gradient(circle at 76% 8%, color-mix(in srgb, var(--color-secondary), transparent 48%), transparent 22rem),
-      radial-gradient(circle at 52% 30%, color-mix(in srgb, var(--color-cyan), transparent 68%), transparent 26rem),
-      color-mix(in srgb, var(--color-background), var(--color-foreground) 2%);
-    mask-image: linear-gradient(to bottom, black, transparent);
+    background: color-mix(in srgb, var(--color-background), var(--color-foreground) 2%);
   }
 
   &__section {
     position: relative;
     box-sizing: border-box;
-    width: min(1120px, 100%);
+    width: min(1400px, 100%);
     margin: 0 auto;
     padding: var(--spacing);
   }
@@ -201,7 +201,7 @@ export default createIdentityWorker(config)</code></pre>
   &__band-copy h2,
   &__quickstart-copy h2 {
     margin: 0;
-    letter-spacing: -.035em !important;
+    letter-spacing: 0 !important;
     line-height: 1.06;
     font-weight: 340;
   }
@@ -244,11 +244,7 @@ export default createIdentityWorker(config)</code></pre>
     gap: var(--space-l);
     padding: var(--space-l);
     border-radius: 2rem;
-    background:
-      radial-gradient(circle at 16% 0%, color-mix(in srgb, var(--color-primary), transparent 38%), transparent 14rem),
-      radial-gradient(circle at 100% 24%, color-mix(in srgb, var(--color-secondary), transparent 42%), transparent 13rem),
-      radial-gradient(circle at 64% 92%, color-mix(in srgb, var(--color-purple), transparent 58%), transparent 16rem),
-      color-mix(in srgb, var(--color-background), var(--color-foreground) 6%);
+    background: color-mix(in srgb, var(--color-background), var(--color-foreground) 6%);
   }
 
   &__hero-card-header {
@@ -266,6 +262,9 @@ export default createIdentityWorker(config)</code></pre>
     }
 
     span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: color-mix(in srgb, currentColor, transparent 38%);
       font-size: .9rem;
     }
@@ -277,7 +276,7 @@ export default createIdentityWorker(config)</code></pre>
     width: 4rem;
     height: 4rem;
     border-radius: 1.35rem;
-    background: linear-gradient(135deg, color-mix(in srgb, var(--color-primary), var(--color-background) 18%), color-mix(in srgb, var(--color-secondary), var(--color-background) 22%));
+    background: color-mix(in srgb, var(--color-background), var(--color-foreground) 10%);
     color: color-mix(in srgb, var(--color-foreground), transparent 8%);
 
     .ankore-logo {
@@ -309,8 +308,8 @@ export default createIdentityWorker(config)</code></pre>
         width: .6rem;
         height: .6rem;
         border-radius: 999px;
-        background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-        box-shadow: 0 0 0 .35rem color-mix(in srgb, var(--color-primary), transparent 72%);
+        background: color-mix(in srgb, var(--color-foreground), transparent 18%);
+        box-shadow: 0 0 0 .35rem color-mix(in srgb, var(--color-foreground), transparent 88%);
       }
     }
 
@@ -409,7 +408,7 @@ export default createIdentityWorker(config)</code></pre>
     }
   }
 
-  &__card-dot {
+  &__card-icon {
     position: absolute;
     top: var(--space-l);
     left: var(--space-l);
@@ -417,14 +416,7 @@ export default createIdentityWorker(config)</code></pre>
     height: 2.4rem;
     border-radius: .9rem;
     background: color-mix(in srgb, var(--color-background), var(--color-foreground) 7%);
-
-    &::after {
-      content: '';
-      position: absolute;
-      inset: .78rem;
-      border-radius: 999px;
-      background: color-mix(in srgb, var(--color-foreground), transparent 18%);
-    }
+    color: color-mix(in srgb, var(--color-foreground), transparent 12%);
   }
 
   &__pathways {
@@ -442,17 +434,14 @@ export default createIdentityWorker(config)</code></pre>
   }
 
   &__upgrade-panel {
-    border: 1px solid color-mix(in srgb, var(--color-primary), transparent 70%);
-    background:
-      radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--color-primary), transparent 58%), transparent 18rem),
-      color-mix(in srgb, var(--color-background), var(--color-primary) 8%);
+    border: 1px solid color-mix(in srgb, var(--color-foreground), transparent 82%);
+    background: color-mix(in srgb, var(--color-background), var(--color-foreground) 5%);
   }
 
   &__install-panel {
     grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
-    border: 1px solid color-mix(in srgb, var(--color-secondary), transparent 70%);
-    background:
-      linear-gradient(135deg, color-mix(in srgb, var(--color-background), var(--color-secondary) 10%), color-mix(in srgb, var(--color-background), var(--color-foreground) 3%));
+    border: 1px solid color-mix(in srgb, var(--color-foreground), transparent 86%);
+    background: color-mix(in srgb, var(--color-background), var(--color-foreground) 3%);
   }
 
   &__band-copy,
@@ -533,7 +522,7 @@ export default createIdentityWorker(config)</code></pre>
     background: color-mix(in srgb, var(--color-foreground), transparent 12%);
     color: var(--color-background);
     font-weight: 850;
-    letter-spacing: -.03em;
+    letter-spacing: 0;
   }
 
   @media (max-width: 900px) {

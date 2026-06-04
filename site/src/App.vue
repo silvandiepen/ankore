@@ -7,7 +7,6 @@ import AnkoreLogo from './components/AnkoreLogo.vue'
 const route = useRoute()
 
 const navItems = [
-  { label: 'Home', to: '/', exact: true },
   { label: 'Why', to: '/why' },
   { label: 'Architecture', to: '/architecture' },
   { label: 'Integrations', to: '/integrations' },

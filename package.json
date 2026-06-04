@@ -5,6 +5,10 @@
   "type": "module",
   "description": "Lean identity continuity module: anchor + encore.",
   "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/silvandiepen/ankore"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

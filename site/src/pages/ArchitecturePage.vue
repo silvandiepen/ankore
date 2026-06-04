@@ -44,10 +44,11 @@ const layers = [
     margin-bottom: var(--spacing);
 
     h1 {
-      max-width: 12ch;
+      max-width: 18ch;
       margin: 0;
-      font-size: clamp(3.5rem, 10vw, 8.5rem);
-      line-height: .9;
+      font-size: clamp(3.2rem, 6vw, 7.25rem) !important;
+      font-weight: 100;
+      line-height: 1.02;
       letter-spacing: 0;
     }
 

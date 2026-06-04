@@ -1,0 +1,12 @@
+name = "ankore-worker-basic"
+main = "src/index.ts"
+compatibility_date = "2026-06-01"
+
+[[d1_databases]]
+binding = "IDENTITY_DB"
+database_name = "ankore-worker-basic"
+database_id = "00000000-0000-0000-0000-000000000000"
+
+[vars]
+# Set ANKORE_TOKEN_PEPPER as a secret, not a var:
+# wrangler secret put ANKORE_TOKEN_PEPPER

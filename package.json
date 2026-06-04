@@ -1,24 +1,80 @@
 {
   "name": "ankore",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.1.1",
+  "private": false,
   "type": "module",
-  "description": "Lean identity continuity module for Sil products: anchor + encore.",
+  "description": "Lean identity continuity module: anchor + encore.",
   "license": "UNLICENSED",
   "exports": {
-    ".": "./dist/index.js",
-    "./worker": "./dist/worker.js",
-    "./client": "./dist/client.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./worker": {
+      "types": "./dist/worker.d.ts",
+      "import": "./dist/worker.js"
+    },
+    "./client": {
+      "types": "./dist/client.d.ts",
+      "import": "./dist/client.js"
+    },
+    "./testing": {
+      "types": "./dist/testing.d.ts",
+      "import": "./dist/testing.js"
+    }
+  },
+  "engines": {
+    "node": ">=22.0.0"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run",
-    "check": "npm run typecheck && npm run test && npm run build"
+    "check": "npm run typecheck && npm run build && npm run test && npm run pack:check && npm run docs:check && npm run examples:check && npm run site:check && npm run site:typecheck && npm run site:build",
+    "pack:check": "npm pack --dry-run",
+    "prepack": "npm run build",
+    "prepare": "npm run build",
+    "docs:check": "node scripts/check-product.mjs",
+    "examples:check": "node scripts/check-example.mjs",
+    "site:check": "node scripts/check-site.mjs",
+    "site:typecheck": "vue-tsc -p site/tsconfig.json --noEmit",
+    "site:build": "vite build --config site/vite.config.ts",
+    "release": "semantic-release"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^12.0.8",
+    "@semantic-release/npm": "^13.1.5",
+    "@semantic-release/release-notes-generator": "^14.1.1",
+    "@sil/ui": "^2.3.5",
     "@types/node": "^20.19.0",
+    "@vitejs/plugin-vue": "^6.0.2",
+    "bemm": "^1.1.4",
+    "conventional-changelog-conventionalcommits": "^9.3.1",
+    "open-icon": "^1.1.0",
+    "sass": "^1.94.2",
+    "semantic-release": "^25.0.3",
     "typescript": "^5.8.3",
-    "vitest": "^4.1.8"
-  }
+    "vite": "^7.2.6",
+    "vitest": "^4.1.8",
+    "vue": "^3.5.25",
+    "vue-router": "^4.6.4",
+    "vue-tsc": "^3.1.5"
+  },
+  "peerDependencies": {
+    "vitest": ">=3 <5"
+  },
+  "peerDependenciesMeta": {
+    "vitest": {
+      "optional": true
+    }
+  },
+  "files": [
+    "dist",
+    "migrations",
+    "README.md",
+    "docs"
+  ]
 }

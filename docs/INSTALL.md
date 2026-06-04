@@ -5,10 +5,31 @@
 Target package name:
 
 ```bash
-npm install @sil/ankore
+npm install ankore
 ```
 
-During local development, install by workspace/reference until the package is published.
+For pre-publish or private development installs:
+
+```bash
+npm install github:silvandiepen/ankore#development
+```
+
+## Publishing
+
+Ankore publishes from GitHub Actions through `.github/workflows/publish.yml`.
+
+Required repository secret:
+
+- `NPM_TOKEN`: npm automation token with publish rights for `ankore`
+
+Important: if the npm account enforces 2FA for publish, use an npm **automation** token. A normal token that still prompts for OTP will work locally with `--otp`, but it will fail in CI because GitHub Actions cannot answer an authenticator prompt.
+
+Manual local publish, when needed:
+
+```bash
+npm run check
+npm publish --otp=<current-code>
+```
 
 ## Worker setup
 
@@ -16,7 +37,7 @@ Create a product identity Worker with only config and a tiny entrypoint.
 
 ```ts
 // workers/identity-api/src/index.ts
-import { createIdentityWorker } from '@sil/ankore/worker'
+import { createIdentityWorker } from 'ankore/worker'
 import config from '../ankore.config.json'
 
 export default createIdentityWorker(config)
@@ -57,7 +78,7 @@ npx wrangler d1 migrations apply <product-identity-db> --remote
 ## Client setup
 
 ```ts
-import { createAnkoreClient } from '@sil/ankore/client'
+import { createAnkoreClient } from 'ankore/client'
 
 export const identity = createAnkoreClient({
   baseUrl: 'https://id.example.com/v1/identity',
@@ -70,7 +91,7 @@ export const identity = createAnkoreClient({
 Product repos should import Ankore's test suite and run it against their config fixture.
 
 ```ts
-import { describeIdentityContract } from '@sil/ankore/testing'
+import { describeIdentityContract } from 'ankore/testing'
 import config from '../ankore.config.json'
 
 describeIdentityContract('product identity', { config })

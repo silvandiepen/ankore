@@ -21,7 +21,7 @@ Use `examples/tiko/ankore.config.json` as the starting fixture.
 ## Expected Worker
 
 ```ts
-import { createIdentityWorker } from '@sil/ankore/worker'
+import { createIdentityWorker } from 'ankore/worker'
 import config from './ankore.config.json'
 
 export default createIdentityWorker(config)

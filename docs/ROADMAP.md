@@ -65,6 +65,17 @@
 - Retire Chikki product-local password auth
 - Delete replaced product-local auth logic after validation
 
+## Phase 8 — Productization
+
+See [Full product TODO](PRODUCT_TODO.md) for the complete product checklist.
+
+- marketing/docs website
+- complete install, API, config, client, security, and troubleshooting docs
+- runnable Worker example
+- docs/package export alignment
+- product adoption plans for Tiko and Mikki
+- release/changelog automation
+
 ## Deferred
 
 - OAuth/social login

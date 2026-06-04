@@ -1,6 +1,6 @@
 # Ankore
 
-**Ankore** is the lean identity continuity module for Sil products.
+**Ankore** is a lean identity continuity module for products that should work before accounts.
 
 The name comes from **anchor** + **encore**:
 
@@ -21,7 +21,7 @@ Ankore is intentionally not a general-purpose auth platform. It is a small, audi
 Product repos should install and configure Ankore, not implement auth themselves:
 
 ```ts
-import { createIdentityWorker } from '@sil/ankore/worker'
+import { createIdentityWorker } from 'ankore/worker'
 import config from './ankore.config.json'
 
 export default createIdentityWorker(config)
@@ -30,7 +30,7 @@ export default createIdentityWorker(config)
 Client packages use the same route contract everywhere:
 
 ```ts
-import { createAnkoreClient } from '@sil/ankore/client'
+import { createAnkoreClient } from 'ankore/client'
 
 const identity = createAnkoreClient({ baseUrl: 'https://id.tiko.mt/v1/identity' })
 const session = await identity.bootstrapDevice()
@@ -65,7 +65,12 @@ identity_
 - [Tiko integration](docs/TIKO.md)
 - [Mikki integration](docs/MIKKI.md)
 - [Roadmap](docs/ROADMAP.md)
+- [Full product TODO](docs/PRODUCT_TODO.md)
 
 ## Current state
 
-This repository starts as the specification and package scaffold. Implementation should proceed in small TDD slices, starting with config validation, token hashing, D1 storage, and device/session bootstrap.
+`ankore@0.1.0` is published on npm. Releases are automated with semantic-release: each merge to `main` analyzes conventional commits, chooses the next npm version, publishes with provenance, and creates release notes.
+
+The next automated npm release includes the initial identity core plus GitHub-install build hygiene, installed-package export coverage, and device resume support for products that restore a known device with `{ id, secret }`.
+
+It is not yet a complete product experience. The next work is Tiko/Mikki adoption and continued hardening. See [Full product TODO](docs/PRODUCT_TODO.md).

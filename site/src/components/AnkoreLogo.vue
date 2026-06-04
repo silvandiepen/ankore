@@ -1,0 +1,55 @@
+<template>
+  <svg
+    class="ankore-logo"
+    id="Layer_1"
+    data-name="Layer 1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 90 99"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path
+      d="M45,81s13.5-13.5,23.14-13.5,17.36,6.04,17.36,13.5-7.77,13.5-17.36,13.5-23.14-13.5-23.14-13.5Z"
+      fill="none"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-miterlimit="10"
+      stroke-width="9"
+    />
+    <path
+      d="M45,45s-13.5-13.5-13.5-23.14,6.04-17.36,13.5-17.36,13.5,7.77,13.5,17.36-13.5,23.14-13.5,23.14Z"
+      fill="none"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-miterlimit="10"
+      stroke-width="9"
+    />
+    <path
+      d="M45,81s-13.5,13.5-23.14,13.5-17.36-6.04-17.36-13.5,7.77-13.5,17.36-13.5,23.14,13.5,23.14,13.5Z"
+      fill="none"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-miterlimit="10"
+      stroke-width="9"
+    />
+    <polyline
+      points="31.5 54 45 63 58.5 54"
+      fill="none"
+      stroke="currentColor"
+      stroke-linecap="square"
+      stroke-miterlimit="10"
+      stroke-width="9"
+    />
+    <line
+      x1="45"
+      y1="45"
+      x2="45"
+      y2="58.5"
+      fill="none"
+      stroke="currentColor"
+      stroke-linecap="square"
+      stroke-miterlimit="10"
+      stroke-width="9"
+    />
+  </svg>
+</template>

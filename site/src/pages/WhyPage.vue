@@ -51,6 +51,7 @@ const reasons = computed(() => {
   }
 
   &__hero {
+    position: relative;
     display: grid;
     gap: var(--space-l);
     margin-bottom: var(--spacing);

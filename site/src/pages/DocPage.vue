@@ -34,6 +34,7 @@ const page = computed(() => {
 
 <style lang="scss">
 .ankore-doc-page {
+  position: relative;
   max-width: 920px;
 
   &__header {

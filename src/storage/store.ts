@@ -29,6 +29,9 @@ export interface IdentityStore {
   getAccountByEmailHash(product: string, emailHash: string): Promise<IdentityAccount | null>
   verifyAccountEmail(accountId: string, verifiedAt: string): Promise<void>
 
+  reassignDevices(fromSubjectId: string, toSubjectId: string): Promise<void>
+  disableSubject(subjectId: string, disabledAt: string): Promise<void>
+
   createEmailChallenge(challenge: EmailChallenge): Promise<void>
   getEmailChallengeByTokenHash(tokenHash: string): Promise<EmailChallenge | null>
   getEmailChallengeByOtpHash(otpHash: string): Promise<EmailChallenge | null>

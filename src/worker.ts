@@ -257,6 +257,25 @@ async function verifyEmailChallenge(request: Request, store: IdentityStore, conf
   }
 
   let account = await store.getAccountBySubject(subject.id)
+
+  // If this subject has no account, check if the email already belongs to another subject.
+  // If so, link the current device to that existing subject instead of creating a duplicate.
+  if (!account && challenge.emailHash) {
+    const existingAccount = await store.getAccountByEmailHash(config.product, challenge.emailHash)
+    if (existingAccount) {
+      // Migrate the challenge's subject's devices to the existing account's subject
+      await store.reassignDevices(subject.id, existingAccount.subjectId)
+      // Disable the now-orphaned anonymous subject
+      await store.disableSubject(subject.id, at.toISOString())
+      // Use the existing subject going forward
+      subject = (await store.getSubject(existingAccount.subjectId))!
+      account = existingAccount
+      await store.verifyAccountEmail(account.id, at.toISOString())
+      account = { ...account, emailVerifiedAt: at.toISOString() }
+      await audit(store, config, 'email.link', subject.id, at)
+    }
+  }
+
   if (!account) {
     account = {
       id: id('acc'),
@@ -271,7 +290,7 @@ async function verifyEmailChallenge(request: Request, store: IdentityStore, conf
       metadata: {}
     }
     await store.createAccount(account)
-  } else {
+  } else if (!account.emailVerifiedAt) {
     await store.verifyAccountEmail(account.id, at.toISOString())
     account = { ...account, emailVerifiedAt: at.toISOString() }
   }

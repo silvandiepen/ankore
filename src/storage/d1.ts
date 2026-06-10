@@ -60,6 +60,9 @@ export class D1IdentityStore implements IdentityStore {
   async getAccountByEmailHash(product: string, emailHash: string): Promise<IdentityAccount | null> { return mapAccount(await this.db.prepare('SELECT * FROM identity_accounts WHERE product = ? AND email_hash = ? AND disabled_at IS NULL LIMIT 1').bind(product, emailHash).first<Row>()) }
   async verifyAccountEmail(accountId: string, verifiedAt: string): Promise<void> { await this.db.prepare('UPDATE identity_accounts SET email_verified_at = ?, updated_at = ? WHERE id = ?').bind(verifiedAt, verifiedAt, accountId).run() }
 
+  async reassignDevices(fromSubjectId: string, toSubjectId: string): Promise<void> { await this.db.prepare('UPDATE identity_devices SET subject_id = ? WHERE subject_id = ?').bind(toSubjectId, fromSubjectId).run() }
+  async disableSubject(subjectId: string, disabledAt: string): Promise<void> { await this.db.prepare('UPDATE identity_subjects SET disabled_at = ?, updated_at = ? WHERE id = ?').bind(disabledAt, disabledAt, subjectId).run() }
+
   async createEmailChallenge(challenge: EmailChallenge): Promise<void> {
     await this.db.prepare('INSERT INTO identity_email_challenges (id, subject_id, account_id, product, purpose, email_hash, token_hash, otp_hash, created_at, expires_at, consumed_at, attempt_count, metadata_json) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)')
       .bind(challenge.id, challenge.subjectId, challenge.accountId, challenge.product, challenge.purpose, challenge.emailHash, challenge.tokenHash, challenge.otpHash, challenge.createdAt, challenge.expiresAt, challenge.consumedAt, challenge.attemptCount, JSON.stringify({ ...challenge.metadata, emailPlain: challenge.emailPlain })).run()

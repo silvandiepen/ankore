@@ -63,6 +63,16 @@ export class MemoryIdentityStore implements IdentityStore {
     if (account) this.accounts.set(accountId, { ...account, emailVerifiedAt: verifiedAt, updatedAt: verifiedAt })
   }
 
+  async reassignDevices(fromSubjectId: string, toSubjectId: string): Promise<void> {
+    for (const [id, device] of this.devices) {
+      if (device.subjectId === fromSubjectId) this.devices.set(id, { ...device, subjectId: toSubjectId })
+    }
+  }
+  async disableSubject(subjectId: string, disabledAt: string): Promise<void> {
+    const subject = this.subjects.get(subjectId)
+    if (subject) this.subjects.set(subjectId, { ...subject, disabledAt, updatedAt: disabledAt })
+  }
+
   async createEmailChallenge(challenge: EmailChallenge): Promise<void> { this.emailChallenges.set(challenge.id, challenge) }
   async getEmailChallengeByTokenHash(tokenHash: string): Promise<EmailChallenge | null> {
     return Array.from(this.emailChallenges.values()).find(challenge => challenge.tokenHash === tokenHash) ?? null

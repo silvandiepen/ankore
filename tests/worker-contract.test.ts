@@ -274,3 +274,79 @@ describe.each([
     expect(response.status).toBe(400)
   })
 })
+
+describe.each([
+  ['Tiko', tikoConfig],
+  ['Mikki', mikkiConfig]
+])('%s email deduplication', (_name, config) => {
+  it('reuses existing account when verifying email from a new device', async () => {
+    const { worker, store, sent } = makeWorker(config)
+
+    // Device A: bootstrap, challenge, verify → creates account for user@example.com
+    const deviceA = await json(await request(worker, '/v1/identity/device', { method: 'POST' }))
+    await request(worker, '/v1/identity/email/challenge', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${deviceA.session.token}` },
+      body: JSON.stringify({ email: 'user@example.com', purpose: 'verify_email' })
+    })
+    const verifyA = await json(await request(worker, '/v1/identity/email/verify', {
+      method: 'POST',
+      body: JSON.stringify({ token: sent[0]!.token })
+    }))
+    expect(verifyA.account.emailVerified).toBe(true)
+    const originalAccountId = verifyA.account.id
+    const originalSubjectId = verifyA.subject.id
+
+    // Device B: fresh bootstrap (new browser/incognito)
+    sent.length = 0
+    const deviceB = await json(await request(worker, '/v1/identity/device', { method: 'POST' }))
+    expect(deviceB.subject.id).not.toEqual(originalSubjectId)
+
+    // Same email challenge from device B
+    await request(worker, '/v1/identity/email/challenge', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${deviceB.session.token}` },
+      body: JSON.stringify({ email: 'user@example.com', purpose: 'verify_email' })
+    })
+
+    // Verify — should link to existing account, NOT create a new one
+    const verifyB = await json(await request(worker, '/v1/identity/email/verify', {
+      method: 'POST',
+      body: JSON.stringify({ token: sent[0]!.token })
+    }))
+
+    // The returned subject and account should be the ORIGINAL ones
+    expect(verifyB.subject.id).toEqual(originalSubjectId)
+    expect(verifyB.account.id).toEqual(originalAccountId)
+    expect(verifyB.account.emailVerified).toBe(true)
+
+    // Only one account should exist in the store
+    const allAccounts = Array.from(store.accounts.values()).filter(a => !a.disabledAt)
+    expect(allAccounts).toHaveLength(1)
+
+    // Device B's subject should be disabled (it was an anonymous throwaway)
+    const deviceBSubject = Array.from(store.subjects.values()).find(s => s.id === deviceB.subject.id)
+    expect(deviceBSubject?.disabledAt).toBeTruthy()
+
+    // The new device should now belong to the original subject
+    const deviceRecord = Array.from(store.devices.values()).find(d => d.id === deviceB.device.id)
+    expect(deviceRecord?.subjectId).toEqual(originalSubjectId)
+  })
+
+  it('creates a new account when email has not been seen before', async () => {
+    const { worker, sent } = makeWorker(config)
+
+    const device = await json(await request(worker, '/v1/identity/device', { method: 'POST' }))
+    await request(worker, '/v1/identity/email/challenge', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${device.session.token}` },
+      body: JSON.stringify({ email: 'brand-new@example.com', purpose: 'verify_email' })
+    })
+    const verified = await json(await request(worker, '/v1/identity/email/verify', {
+      method: 'POST',
+      body: JSON.stringify({ token: sent[0]!.token })
+    }))
+    expect(verified.account.id).toMatch(/^acc_/)
+    expect(verified.account.emailVerified).toBe(true)
+  })
+})
